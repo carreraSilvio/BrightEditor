@@ -14,6 +14,11 @@ namespace BrightLib.BrightEditor.Core
 		{
 			return GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
 		}
+
+		public static bool DrawToggle(bool boolean, string text, float width = 60, float height = 20)
+		{
+			return GUILayout.Toggle(boolean, text, GUILayout.MinWidth(width), GUILayout.MinHeight(height));
+		}
 	}
 }
 

@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEngine;
 
 namespace BrightLib.BrightEditor.Core
 {
@@ -18,6 +19,18 @@ namespace BrightLib.BrightEditor.Core
 		public static void DrawProperty(SerializedProperty property)
 		{
 			EditorGUILayout.PropertyField(property, true);
+		}
+
+		public static bool InlineButton(string prefixLabelText, string buttonText)
+		{
+			EditorGUILayout.BeginHorizontal();
+
+			EditorGUILayout.PrefixLabel(prefixLabelText);
+			var result = GUILayout.Button(buttonText);
+
+			EditorGUILayout.EndHorizontal();
+
+			return result;
 		}
 	}
 }
