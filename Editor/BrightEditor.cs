@@ -3,7 +3,7 @@
 namespace BrightLib.BrightEditor.Core
 {
 	/// <summary>
-	/// A <see cref="UnityEditor"/>.<see cref="UnityEditor.Editor"/> wrapper with quality-of-life methods.
+	/// A wrapper for <see cref="UnityEditor"/>.<see cref="UnityEditor.Editor"/> with quality-of-life methods.
 	/// </summary>
 	public class BrightEditor : UnityEditor.Editor
     {

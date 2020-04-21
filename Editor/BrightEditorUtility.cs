@@ -10,7 +10,10 @@ namespace BrightLib.BrightEditor.Core
 	{
 		#region Draw Text
 
-		public static void DrawLabelBold(string text)
+		/// <summary>
+		/// Draws a label with bold applied.
+		/// </summary>
+		public static void DrawBoldLabel(string text)
 		{
 			GUILayout.Label(text, EditorStyles.boldLabel);
 		}
@@ -30,11 +33,17 @@ namespace BrightLib.BrightEditor.Core
 			return GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
 		}
 
+		/// <summary>
+		/// Draws a button and returns true if it was pressed this frame
+		/// </summary>
 		public static bool DrawButton(string text, params GUILayoutOption[] options)
 		{
 			return GUILayout.Button(text, options);
 		}
 
+		/// <summary>
+		/// Draws a button with a prefix label on the same line
+		/// </summary>
 		public static bool DrawInlineButton(string prefixLabelText, string buttonText)
 		{
 			EditorGUILayout.BeginHorizontal();
