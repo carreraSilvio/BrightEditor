@@ -15,10 +15,13 @@ namespace BrightLib.BrightEditor.Core
 		/// </summary>
 		public static void DrawBoldLabel(string text)
 		{
-			GUILayout.Label(text, EditorStyles.boldLabel);
+			EditorGUILayout.LabelField(text, EditorStyles.boldLabel);
 		}
 
-		public static string TextFieldArea(string label, string text, params GUILayoutOption[] options)
+		/// <summary>
+		/// Draws a text area with a label.
+		/// </summary>
+		public static string DrawTextArea(string label, string text, params GUILayoutOption[] options)
 		{
 			EditorGUILayout.LabelField(label);
 			return EditorGUILayout.TextArea(text, options);
@@ -28,6 +31,9 @@ namespace BrightLib.BrightEditor.Core
 
 		#region Draw Button
 
+		/// <summary>
+		/// Draws a button and returns true if it was pressed this frame
+		/// </summary>
 		public static bool DrawButton(string text, float width = 60, float height = 20)
 		{
 			return GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
@@ -71,31 +77,60 @@ namespace BrightLib.BrightEditor.Core
 			EditorGUILayout.PropertyField(property, true);
 		}
 
-        #endregion
+		#endregion
 
-        public static void StartGreyedOutArea(bool toggle = true)
+		/// <summary>
+		/// Allow fields after this to be seen but not altered via inspector.
+		/// </summary>
+		public static void StartGreyedOutArea(bool toggle = true)
 		{
 			GUI.enabled = toggle;
 		}
 
+		/// <summary>
+		/// Allow fields after this to be seen and altered via inspector.
+		/// </summary>
 		public static void EndGreyedOutArea()
 		{
 			GUI.enabled = true;
 		}
 
+		/// <summary>
+		/// Increase the indent level by 1
+		/// </summary>
 		public static void IncreaseIndentLevel()
 		{
 			EditorGUI.indentLevel++;
 		}
 
+		/// <summary>
+		/// Decrease the indent level by 1
+		/// </summary>
 		public static void DecreaseIndentLevel()
 		{
 			EditorGUI.indentLevel++;
 		}
 
+		/// <summary>
+		/// Set the indent level back to 0
+		/// </summary>
 		public static void ResetIndentLevel()
 		{
 			EditorGUI.indentLevel = 0;
+		}
+
+		public static void DrawScriptField(MonoBehaviour target)
+		{
+			GUI.enabled = false;
+			EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour(target), target.GetType(), false);
+			GUI.enabled = true;
+		}
+
+		public static void DrawScriptField(ScriptableObject target)
+		{
+			GUI.enabled = false;
+			EditorGUILayout.ObjectField("Script", MonoScript.FromScriptableObject(target), target.GetType(), false);
+			GUI.enabled = true;
 		}
 	}
 

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BrightLib.BrightEditor.Core
 {
 	/// <summary>
-	/// A wrapper for <see cref="UnityEditor"/>.<see cref="UnityEditor.EditorWindow"/> with quality-of-life methods.
+	/// Extends <see cref="UnityEditor"/>.<see cref="UnityEditor.EditorWindow"/> with quality-of-life methods.
 	/// </summary>
 	public class BrightEditorWindow : EditorWindow 
 	{
@@ -14,6 +14,24 @@ namespace BrightLib.BrightEditor.Core
 		public void DrawBoldLabel(string text)
 		{
 			BrightEditorUtility.DrawBoldLabel(text);
+		}
+
+		public bool DrawButton(string text, float width = 60, float height = 20)
+		{
+			return DrawButton(text, GUILayout.Width(width), GUILayout.Height(height));
+		}
+
+		public bool DrawButton(string text, params GUILayoutOption[] options)
+		{
+			return BrightEditorUtility.DrawButton(text, options);
+		}
+
+		/// <summary>
+		/// Draws a text area with a label.
+		/// </summary>
+		public string DrawTextArea(string label, string text, params GUILayoutOption[] options)
+		{
+			return BrightEditorUtility.DrawTextArea(label, text, options);
 		}
 
 		/// <summary>

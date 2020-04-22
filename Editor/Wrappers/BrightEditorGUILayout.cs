@@ -5,7 +5,7 @@ namespace BrightLib.BrightEditor.Core
 {
 	public static class BrightEditorGUILayout
 	{
-		public static void LabelFieldBold(string text)
+		public static void DrawBoldLabelField(string text)
 		{
 			EditorGUILayout.LabelField(text, EditorStyles.boldLabel);
 		}
@@ -21,7 +21,7 @@ namespace BrightLib.BrightEditor.Core
 			EditorGUILayout.PropertyField(property, true);
 		}
 
-		public static bool InlineButton(string prefixLabelText, string buttonText)
+		public static bool DrawInlineButton(string prefixLabelText, string buttonText)
 		{
 			EditorGUILayout.BeginHorizontal();
 
@@ -34,4 +34,3 @@ namespace BrightLib.BrightEditor.Core
 		}
 	}
 }
-
