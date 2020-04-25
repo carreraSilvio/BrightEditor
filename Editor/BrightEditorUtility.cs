@@ -50,12 +50,12 @@ namespace BrightLib.BrightEditor.Core
 		/// <summary>
 		/// Draws a button with a prefix label on the same line
 		/// </summary>
-		public static bool DrawInlineButton(string prefixLabelText, string buttonText)
+		public static bool DrawInlineButton(string prefixLabelText, string buttonText, params GUILayoutOption[] options)
 		{
 			EditorGUILayout.BeginHorizontal();
 
 			EditorGUILayout.PrefixLabel(prefixLabelText);
-			var result = GUILayout.Button(buttonText);
+			var result = GUILayout.Button(buttonText, options);
 
 			EditorGUILayout.EndHorizontal();
 
