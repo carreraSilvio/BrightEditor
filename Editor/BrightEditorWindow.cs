@@ -11,17 +11,23 @@ namespace BrightLib.BrightEditor.Core
 		/// <summary>
 		/// Draws a label with bold applied.
 		/// </summary>
-		public void DrawBoldLabel(string text)
+		protected void DrawBoldLabel(string text, params GUILayoutOption[] options)
 		{
-			BrightEditorUtility.DrawBoldLabel(text);
+			BrightEditorUtility.DrawBoldLabel(text, options);
 		}
 
-		public bool DrawButton(string text, float width = 60, float height = 20)
+		/// <summary>
+		/// Draws a button and returns true if it was pressed this frame
+		/// </summary>
+		protected bool DrawButton(string text, float width = 60, float height = 20)
 		{
 			return DrawButton(text, GUILayout.Width(width), GUILayout.Height(height));
 		}
 
-		public bool DrawButton(string text, params GUILayoutOption[] options)
+		/// <summary>
+		/// Draws a button and returns true if it was pressed this frame
+		/// </summary>
+		protected bool DrawButton(string text, params GUILayoutOption[] options)
 		{
 			return BrightEditorUtility.DrawButton(text, options);
 		}

@@ -13,9 +13,9 @@ namespace BrightLib.BrightEditor.Core
 		/// <summary>
 		/// Draws a label with bold applied.
 		/// </summary>
-		public static void DrawBoldLabel(string text)
+		public static void DrawBoldLabel(string text, params GUILayoutOption[] options)
 		{
-			EditorGUILayout.LabelField(text, EditorStyles.boldLabel);
+			EditorGUILayout.LabelField(text, EditorStyles.boldLabel, options);
 		}
 
 		/// <summary>
