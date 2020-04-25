@@ -1,0 +1,13 @@
+{
+  "name": "com.brightlib.brighteditor",
+  "version": "1.0.0",
+  "displayName": "Bright Editor",
+  "description": "Extends Editor and EditorWindow with helper functions. Useful methods in BrightEditorUtility.",
+  "unity": "2018.2",
+  "unityRelease": "15f1",
+  "author": 
+  {
+    "name": "Silvio Carréra",
+    "url": "https://github.com/carreraSilvio/BrightEditor"
+  }
+}
