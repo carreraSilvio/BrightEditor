@@ -8,9 +8,12 @@ namespace BrightLib.BrightEditor.Core
 	/// </summary>
 	public class BrightEditor : UnityEditor.Editor
     {
-        #region Draw Text
+		#region Draw Text
 
-        protected void DrawBoldLabel(string text, params GUILayoutOption[] options)
+		/// <summary>
+		/// Draws a label with bold applied.
+		/// </summary>
+		protected void DrawBoldLabel(string text, params GUILayoutOption[] options)
 		{
 			BrightEditorUtility.DrawBoldLabel(text, options);
 		}
