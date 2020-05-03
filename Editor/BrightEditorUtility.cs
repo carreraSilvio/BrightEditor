@@ -32,7 +32,7 @@ namespace BrightLib.BrightEditor.Core
 		#region Draw Button
 
 		/// <summary>
-		/// Draws a button and returns true if it was pressed this frame
+		/// Draws a button and returns true if it was pressed this frame.
 		/// </summary>
 		public static bool DrawButton(string text, float width = 60, float height = 20)
 		{
@@ -40,7 +40,7 @@ namespace BrightLib.BrightEditor.Core
 		}
 
 		/// <summary>
-		/// Draws a button and returns true if it was pressed this frame
+		/// Draws a button and returns true if it was pressed this frame.
 		/// </summary>
 		public static bool DrawButton(string text, params GUILayoutOption[] options)
 		{
@@ -48,7 +48,7 @@ namespace BrightLib.BrightEditor.Core
 		}
 
 		/// <summary>
-		/// Draws a button with a prefix label on the same line
+		/// Draws a button with a prefix label on the same line.
 		/// </summary>
 		public static bool DrawInlineButton(string prefixLabelText, string buttonText, params GUILayoutOption[] options)
 		{
@@ -72,9 +72,27 @@ namespace BrightLib.BrightEditor.Core
 			EditorGUILayout.PropertyField(property, true);
 		}
 
-		public static void DrawProperty(SerializedProperty property)
+		public static void DrawProperty(SerializedProperty property, bool includeChildren = true)
 		{
-			EditorGUILayout.PropertyField(property, true);
+			EditorGUILayout.PropertyField(property, includeChildren);
+		}
+
+		#endregion
+
+		#region Draw Script Field
+
+		public static void DrawScriptField(MonoBehaviour target)
+		{
+			GUI.enabled = false;
+			EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour(target), target.GetType(), false);
+			GUI.enabled = true;
+		}
+
+		public static void DrawScriptField(ScriptableObject target)
+		{
+			GUI.enabled = false;
+			EditorGUILayout.ObjectField("Script", MonoScript.FromScriptableObject(target), target.GetType(), false);
+			GUI.enabled = true;
 		}
 
 		#endregion
@@ -119,19 +137,7 @@ namespace BrightLib.BrightEditor.Core
 			EditorGUI.indentLevel = 0;
 		}
 
-		public static void DrawScriptField(MonoBehaviour target)
-		{
-			GUI.enabled = false;
-			EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour(target), target.GetType(), false);
-			GUI.enabled = true;
-		}
-
-		public static void DrawScriptField(ScriptableObject target)
-		{
-			GUI.enabled = false;
-			EditorGUILayout.ObjectField("Script", MonoScript.FromScriptableObject(target), target.GetType(), false);
-			GUI.enabled = true;
-		}
-	}
+        
+    }
 
 }

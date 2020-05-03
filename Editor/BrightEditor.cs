@@ -8,14 +8,43 @@ namespace BrightLib.BrightEditor.Core
 	/// </summary>
 	public class BrightEditor : UnityEditor.Editor
     {
-		protected void DrawBoldLabel(string text)
+        #region Draw Text
+
+        protected void DrawBoldLabel(string text, params GUILayoutOption[] options)
 		{
-			GUILayout.Label(text, EditorStyles.boldLabel);
+			BrightEditorUtility.DrawBoldLabel(text, options);
 		}
 
-		protected bool DrawButton(string text, float width = 60, float height = 20)
+        #endregion
+
+        #region Draw Button
+
+        /// <summary>
+        /// Draws a button and returns true if it was pressed this frame
+        /// </summary>
+        public bool DrawButton(string text, float width = 60, float height = 20)
 		{
-			return GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
+			return BrightEditorUtility.DrawButton(text, width, height);
+		}
+
+		/// <summary>
+		/// Draws a button and returns true if it was pressed this frame
+		/// </summary>
+		public bool DrawButton(string text, params GUILayoutOption[] options)
+		{
+			return BrightEditorUtility.DrawButton(text, options);
+		}
+
+		#endregion
+
+		#region Draw Property
+
+		protected SerializedProperty FetchProperty(string propertyName)
+		{
+			var property = serializedObject.FindProperty(propertyName);
+			if (property == null) Debug.LogWarning($"{propertyName} not found in object {name}");
+
+			return property;
 		}
 
 		protected void DrawProperty(string name)
@@ -23,6 +52,10 @@ namespace BrightLib.BrightEditor.Core
 			SerializedProperty property = serializedObject.FindProperty(name);
 			EditorGUILayout.PropertyField(property, true);
 		}
+
+		#endregion
+
+		#region Draw Script Field
 
 		protected void DrawScriptFieldForScriptableObject<T>() where T : ScriptableObject
 		{
@@ -32,6 +65,25 @@ namespace BrightLib.BrightEditor.Core
 		protected void DrawScriptFieldForMonoBehaviour<T>() where T : MonoBehaviour
 		{
 			BrightEditorUtility.DrawScriptField((T)target);
+		}
+
+		#endregion
+
+
+		/// <summary>
+		/// Allow fields after this to be seen but not altered via inspector.
+		/// </summary>
+		public void StartGreyedOutArea(bool toggle = true)
+		{
+			GUI.enabled = toggle;
+		}
+
+		/// <summary>
+		/// Allow fields after this to be seen and altered via inspector.
+		/// </summary>
+		public void EndGreyedOutArea()
+		{
+			GUI.enabled = true;
 		}
 
 		/// <summary>
@@ -56,14 +108,6 @@ namespace BrightLib.BrightEditor.Core
 		public void ResetIndentLevel()
 		{
 			BrightEditorUtility.ResetIndentLevel();
-		}
-
-		protected SerializedProperty FetchProperty(string propertyName)
-		{
-			var property = serializedObject.FindProperty(propertyName);
-			if (property == null) Debug.LogWarning($"{propertyName} not found in object {name}");
-
-			return property;
 		}
 	}
 }
