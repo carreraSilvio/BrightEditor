@@ -114,7 +114,7 @@ namespace BrightLib.BrightEditor.Core
 		}
 
 		/// <summary>
-		/// Increase the indent level by 1
+		/// Increase indent level by 1
 		/// </summary>
 		public static void IncreaseIndentLevel()
 		{
@@ -122,15 +122,15 @@ namespace BrightLib.BrightEditor.Core
 		}
 
 		/// <summary>
-		/// Decrease the indent level by 1
+		/// Decrease indent level by 1
 		/// </summary>
 		public static void DecreaseIndentLevel()
 		{
-			EditorGUI.indentLevel++;
+			EditorGUI.indentLevel--;
 		}
 
 		/// <summary>
-		/// Set the indent level back to 0
+		/// Set indent level back to 0
 		/// </summary>
 		public static void ResetIndentLevel()
 		{
