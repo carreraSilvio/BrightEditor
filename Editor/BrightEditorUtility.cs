@@ -137,7 +137,24 @@ namespace BrightLib.BrightEditor.Core
 			EditorGUI.indentLevel = 0;
 		}
 
-        
-    }
+		public static SerializedProperty FetchProperty(SerializedObject serializedObject, string propertyName)
+		{
+			var property = serializedObject.FindProperty(propertyName);
+			if (property == null) Debug.LogWarning($"{propertyName} not found in object {serializedObject.targetObject.name}");
+
+			return property;
+		}
+
+		public static void DrawArray(SerializedProperty property, string elementLabel = "Element")
+		{
+			IncreaseIndentLevel();
+			for (int i = 0; i < property.arraySize; i++)
+			{
+				UnityEditor.EditorGUILayout.PropertyField(property.GetArrayElementAtIndex(i), new UnityEngine.GUIContent(elementLabel + " " + (i + 1).ToString()), includeChildren: true);
+			}
+			DecreaseIndentLevel();
+		}
+
+	}
 
 }

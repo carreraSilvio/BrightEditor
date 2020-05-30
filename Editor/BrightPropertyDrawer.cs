@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEngine;
 
 namespace BrightLib.BrightEditor.Core
 {
@@ -40,6 +41,24 @@ namespace BrightLib.BrightEditor.Core
 		/// </summary>
 		public void ResetIndentLevel()
 			=> BrightEditorUtility.ResetIndentLevel();
+
+		public void DrawProperty(ref Rect baseRect, SerializedProperty property, string propertyRelative, float increaseX = 0f, float increaseY = 0)
+		{
+			baseRect.x += increaseX;
+			baseRect.y += increaseY;
+			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
+
+			EditorGUI.PropertyField(rect, property.FindPropertyRelative(propertyRelative));
+		}
+
+		public void DrawProperty(ref Rect baseRect, SerializedProperty property, float increaseX = 0f, float increaseY = 0)
+		{
+			baseRect.x += increaseX;
+			baseRect.y += increaseY;
+			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
+
+			EditorGUI.PropertyField(rect, property);
+		}
 
 	}
 }
