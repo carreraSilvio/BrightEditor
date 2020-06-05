@@ -1,13 +1,13 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditor.Core
+namespace BrightLib.BrightEditing
 {
 	/// <summary>
-	/// Derives <see cref="UnityEditor"/>.<see cref="UnityEditor.Editor"/> with quality-of-life methods.
+	/// Derives <see cref="UnityEditor"/>.<see cref="Editor"/> with quality-of-life methods.
 	/// </summary>
-	public class BrightEditor : UnityEditor.Editor
-    {
+	public class BrightEditor : Editor
+	{
 		#region Draw Text
 
 		/// <summary>
@@ -18,14 +18,14 @@ namespace BrightLib.BrightEditor.Core
 			BrightEditorUtility.DrawBoldLabel(text, options);
 		}
 
-        #endregion
+		#endregion
 
-        #region Draw Button
+		#region Draw Button
 
-        /// <summary>
-        /// Draws a button and returns true if it was pressed this frame
-        /// </summary>
-        public bool DrawButton(string text, float width = 60, float height = 20)
+		/// <summary>
+		/// Draws a button and returns true if it was pressed this frame
+		/// </summary>
+		public bool DrawButton(string text, float width = 60, float height = 20)
 		{
 			return BrightEditorUtility.DrawButton(text, width, height);
 		}
@@ -50,9 +50,9 @@ namespace BrightLib.BrightEditor.Core
 			return property;
 		}
 
-		protected void DrawProperty(string name)
+		protected void DrawProperty(string propertyName)
 		{
-			SerializedProperty property = serializedObject.FindProperty(name);
+			SerializedProperty property = FetchProperty(propertyName);
 			EditorGUILayout.PropertyField(property, true);
 		}
 
@@ -77,40 +77,32 @@ namespace BrightLib.BrightEditor.Core
 		/// Allow fields after this to be seen but not altered via inspector.
 		/// </summary>
 		public void StartGreyedOutArea(bool toggle = true)
-		{
-			GUI.enabled = toggle;
-		}
+			=> BrightEditorUtility.StartGreyedOutArea(toggle);
 
 		/// <summary>
 		/// Allow fields after this to be seen and altered via inspector.
 		/// </summary>
 		public void EndGreyedOutArea()
-		{
-			GUI.enabled = true;
-		}
+			=> BrightEditorUtility.EndGreyedOutArea();
 
 		/// <summary>
 		/// Increase the indent level by 1
 		/// </summary>
 		public void IncreaseIndentLevel()
-		{
-			BrightEditorUtility.IncreaseIndentLevel();
-		}
+			=> BrightEditorUtility.IncreaseIndentLevel();
+
 
 		/// <summary>
 		/// Decrease the indent level by 1
 		/// </summary>
 		public void DecreaseIndentLevel()
-		{
-			BrightEditorUtility.DecreaseIndentLevel();
-		}
+			=> BrightEditorUtility.DecreaseIndentLevel();
 
 		/// <summary>
 		/// Set the indent level back to 0
 		/// </summary>
 		public void ResetIndentLevel()
-		{
-			BrightEditorUtility.ResetIndentLevel();
-		}
+			=> BrightEditorUtility.ResetIndentLevel();
+
 	}
 }

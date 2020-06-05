@@ -1,10 +1,10 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditor.Core
+namespace BrightLib.BrightEditing
 {
 	/// <summary>
-	/// Collection of methods that wraps <see cref="GUI"/>, <see cref="GUILayout"/>, <see cref="UnityEditor.EditorGUI"/> and <see cref="UnityEditor.EditorGUILayout"/> methods. 
+	/// Collection of methods that wraps <see cref="GUI"/>, <see cref="GUILayout"/>, <see cref="EditorGUI"/> and <see cref="EditorGUILayout"/> methods. 
 	/// </summary>
 	public static class BrightEditorUtility
 	{
@@ -102,7 +102,7 @@ namespace BrightLib.BrightEditor.Core
 		/// </summary>
 		public static void StartGreyedOutArea(bool toggle = true)
 		{
-			GUI.enabled = toggle;
+			GUI.enabled = !toggle;
 		}
 
 		/// <summary>
@@ -150,7 +150,7 @@ namespace BrightLib.BrightEditor.Core
 			IncreaseIndentLevel();
 			for (int i = 0; i < property.arraySize; i++)
 			{
-				UnityEditor.EditorGUILayout.PropertyField(property.GetArrayElementAtIndex(i), new UnityEngine.GUIContent(elementLabel + " " + (i + 1).ToString()), includeChildren: true);
+				EditorGUILayout.PropertyField(property.GetArrayElementAtIndex(i), new GUIContent(elementLabel + " " + (i + 1).ToString()), includeChildren: true);
 			}
 			DecreaseIndentLevel();
 		}

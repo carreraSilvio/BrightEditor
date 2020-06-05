@@ -1,5 +1,5 @@
 {
-    "name": "BrightLib.BrightEditor.Core",
+    "name": "BrightLib.BrightEditing",
     "references": [],
     "includePlatforms": [
         "Editor"

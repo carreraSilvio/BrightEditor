@@ -1,12 +1,12 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditor.Core
+namespace BrightLib.BrightEditing
 {
 	/// <summary>
-	/// Extends <see cref="UnityEditor"/>.<see cref="UnityEditor.EditorWindow"/> with quality-of-life methods.
+	/// Extends <see cref="UnityEditor"/>.<see cref="EditorWindow"/> with quality-of-life methods.
 	/// </summary>
-	public class BrightEditorWindow : EditorWindow 
+	public class BrightEditorWindow : EditorWindow
 	{
 		/// <summary>
 		/// Draws a label with bold applied.
