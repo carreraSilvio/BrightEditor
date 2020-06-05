@@ -6,6 +6,7 @@
 ### New
 * Added BrightPropertyDrawer
 * Changed namespace from ..BrightEditor.. to ..BrightEditing.. to avoid confusion with the BrightEditor class
+* Added proper readme file
 
 ## [1.0.0] - 2020-04-25
 

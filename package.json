@@ -1,8 +1,8 @@
 {
-  "name": "com.brightlib.brighteditor",
-  "version": "1.0.0",
-  "displayName": "Bright Editor",
-  "description": "Extends Editor and EditorWindow with helper functions. Useful methods in BrightEditorUtility.",
+  "name": "com.brightlib.brightediting",
+  "version": "1.1.0",
+  "displayName": "Bright Editing",
+  "description": "Extends Editor, EditorWindow and PropertyDrawer with helper functions. Useful methods also available in BrightEditorUtility.",
   "unity": "2018.2",
   "unityRelease": "15f1",
   "author": 
