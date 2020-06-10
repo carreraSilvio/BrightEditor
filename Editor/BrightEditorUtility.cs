@@ -35,17 +35,20 @@ namespace BrightLib.BrightEditing
 		/// Draws a button and returns true if it was pressed this frame.
 		/// </summary>
 		public static bool DrawButton(string text, float width = 60, float height = 20)
-		{
-			return GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
-		}
+			=> GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
 
 		/// <summary>
 		/// Draws a button and returns true if it was pressed this frame.
 		/// </summary>
 		public static bool DrawButton(string text, params GUILayoutOption[] options)
-		{
-			return GUILayout.Button(text, options);
-		}
+			=> GUILayout.Button(text, options);
+
+		/// <summary>
+		/// Draws a button and returns true if it was pressed this frame.
+		/// </summary>
+		public static bool DrawSimpleButton(string text)
+			=> GUILayout.Button(text);
+		
 
 		/// <summary>
 		/// Draws a button with a prefix label on the same line.
