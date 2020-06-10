@@ -43,18 +43,38 @@ namespace BrightLib.BrightEditing
 		public void ResetIndentLevel()
 			=> BrightEditorUtility.ResetIndentLevel();
 
+		public static void SetLabelWidth(float labelWidth)
+			=> BrightEditorUtility.SetLabelWidth(labelWidth);
+
+		/// <summary>
+		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
+		/// </summary>
+		public static void ResetLabelWidth()
+			=> SetLabelWidth(0f);
+
+
+		public void DrawLabel(ref Rect baseRect, string label = "label", string label2 = "label2", float increaseX = 0f, float increaseY = 0)
+		{
+			baseRect.x += increaseX;
+			baseRect.y += increaseY;
+			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
+			EditorGUI.LabelField(rect, label, label2);
+		}
+
 		public void DrawProperty(Rect baseRect, SerializedProperty property, string propertyRelativeName, float increaseX = 0f, float increaseY = 0)
 			 => DrawProperty(ref baseRect, property, propertyRelativeName, increaseX, increaseY);
 
-		public void DrawProperty(ref Rect baseRect, SerializedProperty property, string propertyRelativeName, float increaseX = 0f, float increaseY = 0)
+		public void DrawProperty(ref Rect baseRect, SerializedProperty property, string propertyRelativeName, float increaseX = 0f, float increaseY = 0, float labelWidth = 0)
 		{
-			if (FetchPropertyRelate(property, propertyRelativeName, out SerializedProperty propertyRelative))
+			if (FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty propertyRelative))
 			{
 				baseRect.x += increaseX;
 				baseRect.y += increaseY;
 				Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
 
-				EditorGUI.PropertyField(rect, propertyRelative);
+				SetLabelWidth(labelWidth);
+				EditorGUI.PropertyField(rect, propertyRelative, true);
+				ResetLabelWidth();
 			}
 		}
 
@@ -70,19 +90,19 @@ namespace BrightLib.BrightEditing
 
 		public void DrawPropertyWithNoLabel(Rect baseRect, SerializedProperty property, string propertyRelativeName)
 		{
-			if (FetchPropertyRelate(property, propertyRelativeName, out SerializedProperty propertyRelative))
+			if (FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty propertyRelative))
 			{
 				DrawPropertyWithNoLabel(baseRect, propertyRelative);
 			}
 		}
 
-		public void DrawPropertyWithNoLabel(Rect baseRect, SerializedProperty property, float increaseX = 0f, float increaseY = 0, float widthPercent = 1)
-			=> DrawPropertyWithNoLabel(ref baseRect, property, increaseX, increaseY, widthPercent);
+		public void DrawPropertyWithNoLabel(Rect baseRect, SerializedProperty property, float offsetRectX = 0f, float offsetRectY = 0, float widthPercent = 1)
+			=> DrawPropertyWithNoLabel(ref baseRect, property, offsetRectX, offsetRectY, widthPercent);
 
-		public void DrawPropertyWithNoLabel(ref Rect baseRect, SerializedProperty property, float increaseX = 0f, float increaseY = 0, float widthPercent = 1)
+		public void DrawPropertyWithNoLabel(ref Rect baseRect, SerializedProperty property, float offsetRectX = 0f, float offsetRectY = 0, float widthPercent = 1)
 		{
-			baseRect.x += increaseX;
-			baseRect.y += increaseY;
+			baseRect.x += offsetRectX;
+			baseRect.y += offsetRectY;
 			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width * widthPercent, SingleLineHeight);
 
 			DrawPropertyWithNoLabel(rect, property);
@@ -95,7 +115,7 @@ namespace BrightLib.BrightEditing
 			EditorGUI.PropertyField(rect, property, GUIContent.none);
 		}
 
-		protected bool FetchPropertyRelate(SerializedProperty property, string propertyRelativeName, out SerializedProperty propertyRelative)
+		protected bool FetchPropertyRelative(SerializedProperty property, string propertyRelativeName, out SerializedProperty propertyRelative)
 		{
 			propertyRelative = property.FindPropertyRelative(propertyRelativeName);
 			if (propertyRelative != null)

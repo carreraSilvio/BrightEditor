@@ -40,6 +40,9 @@ namespace BrightLib.BrightEditing
 			return BrightEditorUtility.DrawTextArea(label, text, options);
 		}
 
+		public void DrawHelpBox(string message, MessageType messageType = MessageType.None, bool wide = false)
+			=> BrightEditorUtility.DrawHelpBox(message, messageType, wide);
+
 		/// <summary>
 		/// Allow fields after this to be seen but not altered via inspector.
 		/// </summary>
@@ -79,6 +82,8 @@ namespace BrightLib.BrightEditing
 		{
 			BrightEditorUtility.ResetIndentLevel();
 		}
+
+		
 	}
 
 }

@@ -42,12 +42,26 @@ namespace BrightLib.BrightEditing
 
 		#region Draw Property
 
+		protected bool FetchProperty(string propertyName, out SerializedProperty property)
+		{
+			property = serializedObject.FindProperty(propertyName);
+			if (property != null)
+			{
+				return true;
+			}
+			Debug.LogWarning($"{propertyName} not found in object {name}");
+			return false;
+		}
+
 		protected SerializedProperty FetchProperty(string propertyName)
 		{
 			var property = serializedObject.FindProperty(propertyName);
-			if (property == null) Debug.LogWarning($"{propertyName} not found in object {name}");
-
-			return property;
+			if (property != null)
+			{
+				return property;
+			}
+			Debug.LogWarning($"{propertyName} not found in object {name}");
+			return null;
 		}
 
 		protected void DrawProperty(string propertyName)

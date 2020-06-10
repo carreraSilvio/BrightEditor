@@ -79,6 +79,10 @@ namespace BrightLib.BrightEditing
 
 		#endregion
 
+		public static void DrawHelpBox(string message, MessageType messageType = MessageType.None, bool wide = false)
+			=> EditorGUILayout.HelpBox(message, messageType, wide);
+		
+
 		#region Draw Script Field
 
 		public static void DrawScriptField(MonoBehaviour target)
@@ -136,6 +140,20 @@ namespace BrightLib.BrightEditing
 		{
 			EditorGUI.indentLevel = 0;
 		}
+
+		/// <summary>
+		/// Sets the default label width back.
+		/// </summary>
+		public static void SetLabelWidth(float labelWidth)
+		{
+			EditorGUIUtility.labelWidth = labelWidth;
+		}
+
+		/// <summary>
+		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
+		/// </summary>
+		public static void ResetLabelWidth()
+			=> SetLabelWidth(0f);
 
 		public static SerializedProperty FetchProperty(SerializedObject serializedObject, string propertyName)
 		{
