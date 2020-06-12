@@ -8,20 +8,43 @@ namespace BrightLib.BrightEditing
 	/// </summary>
 	public class BrightEditorWindow : EditorWindow
 	{
+		#region Draw Int
+
+		/// <summary>
+		/// Draws an int field
+		/// </summary>
+		public static int DrawInt(string label, int value)
+			=> BrightEditorUtility.DrawInt(label, value);
+
+		#endregion
+
+		#region Draw Text
+
+		/// <summary>
+		/// Draws a text field 
+		/// </summary>
+		public static string DrawTextField(string label, string text, params GUILayoutOption[] options)
+			=> BrightEditorUtility.DrawTextField(label, text, options);
+
 		/// <summary>
 		/// Draws a label with bold applied.
 		/// </summary>
 		protected void DrawBoldLabel(string text, params GUILayoutOption[] options)
-		{
-			BrightEditorUtility.DrawBoldLabel(text, options);
-		}
+			=> BrightEditorUtility.DrawBoldLabel(text, options);
+
+		/// <summary>
+		/// Draws a text area with a label.
+		/// </summary>
+		protected string DrawTextArea(string label, string text, params GUILayoutOption[] options)
+			=> BrightEditorUtility.DrawTextArea(text, text, options);
+
+		#endregion
 
 		/// <summary>
 		/// Draws a button and returns true if it was pressed this frame
 		/// </summary>
 		protected bool DrawButton(string text, float width = 60, float height = 20)
 			=> DrawButton(text, GUILayout.Width(width), GUILayout.Height(height));
-		
 
 		/// <summary>
 		/// Draws a button and returns true if it was pressed this frame
@@ -35,13 +58,13 @@ namespace BrightLib.BrightEditing
 		public static bool DrawSimpleButton(string text)
 			=> BrightEditorUtility.DrawSimpleButton(text);
 
-		/// <summary>
-		/// Draws a text area with a label.
-		/// </summary>
-		public string DrawTextArea(string label, string text, params GUILayoutOption[] options)
-		{
-			return BrightEditorUtility.DrawTextArea(label, text, options);
-		}
+
+		public static void DrawProperty(SerializedObject serializedObject, string propertyName, bool includeChildren = true)
+			=> BrightEditorUtility.DrawProperty(serializedObject, propertyName, includeChildren);
+
+		public static void DrawProperty(SerializedProperty property, bool includeChildren = true)
+			=> BrightEditorUtility.DrawProperty(property, includeChildren);
+		
 
 		public void DrawHelpBox(string message, MessageType messageType = MessageType.None, bool wide = false)
 			=> BrightEditorUtility.DrawHelpBox(message, messageType, wide);

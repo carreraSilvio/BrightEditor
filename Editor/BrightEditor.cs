@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BrightLib.BrightEditing
 {
 	/// <summary>
-	/// Derives <see cref="UnityEditor"/>.<see cref="Editor"/> with quality-of-life methods.
+	/// Derives <see cref="UnityEditor"/>.<see cref="UnityEditor.Editor"/> with quality-of-life methods.
 	/// </summary>
 	public class BrightEditor : Editor
 	{
@@ -27,14 +27,12 @@ namespace BrightLib.BrightEditing
 		/// </summary>
 		public bool DrawButton(string text, float width = 60, float height = 20)
 			=> BrightEditorUtility.DrawButton(text, width, height);
-		
 
 		/// <summary>
 		/// Draws a button and returns true if it was pressed this frame
 		/// </summary>
 		public bool DrawSimpleButton(string text)
-			=>  BrightEditorUtility.DrawSimpleButton(text);
-		
+			=> BrightEditorUtility.DrawSimpleButton(text);
 
 		#endregion
 
@@ -67,6 +65,10 @@ namespace BrightLib.BrightEditing
 			SerializedProperty property = FetchProperty(propertyName);
 			EditorGUILayout.PropertyField(property, true);
 		}
+
+		protected void DrawProperty(SerializedProperty property, bool includeChildren = true)
+			=> EditorGUILayout.PropertyField(property, includeChildren);
+		
 
 		#endregion
 
