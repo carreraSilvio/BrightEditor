@@ -275,23 +275,23 @@ namespace BrightLib.BrightEditing
 		/// <summary>
 		/// Display Button with ArrowUI
 		/// </summary>
-		public static bool UpButton()
+		public static bool DrawUpButton()
 		{
 			return GUILayout.Button(Characters.ArrowUp, EditorStyles.toolbarButton, GUILayout.Width(18));
 		}
 
-		public static bool DownButton()
+		public static bool DrawDownButton()
 		{
 			return GUILayout.Button(Characters.ArrowDown, EditorStyles.toolbarButton, GUILayout.Width(18));
 		}
 
-		public static bool PlusButton()
+		public static bool DrawPlusButton()
 		{
 			return GUILayout.Button("+", EditorStyles.toolbarButton, GUILayout.Width(18));
 		}
 
 
-		public static bool CrossButton()
+		public static bool DrawCrossButton()
 		{
 			return GUILayout.Button(Characters.Cross, EditorStyles.toolbarButton, GUILayout.Width(18));
 		}
