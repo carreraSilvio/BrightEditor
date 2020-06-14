@@ -266,6 +266,11 @@ namespace BrightLib.BrightEditing
 			public const string Check = "✓";
 
 			public const string Cross = "×";
+
+			public const string Plus = "+";
+
+			public const string Minus = "-";
+
 		}
 
 		#endregion
@@ -287,7 +292,7 @@ namespace BrightLib.BrightEditing
 
 		public static bool DrawPlusButton()
 		{
-			return GUILayout.Button("+", EditorStyles.toolbarButton, GUILayout.Width(18));
+			return GUILayout.Button(Characters.Plus, EditorStyles.toolbarButton, GUILayout.Width(18));
 		}
 
 
@@ -301,7 +306,7 @@ namespace BrightLib.BrightEditing
 		/// <summary>
 		/// Creates a toolbar that is filled in from an Enum. Useful for setting tool modes.
 		/// </summary>
-		public static Enum EnumToolbar(Enum selected)
+		public static Enum DrawEnumToolbar(Enum selected)
 		{
 			string[] toolbar = Enum.GetNames(selected.GetType());
 			Array values = Enum.GetValues(selected.GetType());
