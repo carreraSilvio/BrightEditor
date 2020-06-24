@@ -67,5 +67,18 @@ namespace BrightLib.BrightEditing
 
 			return CreateAsset<T>(filename, relativePath);
 		}
+
+
+		public static void NestObject(Object childObject, Object parentObject)
+		{
+			AssetDatabase.AddObjectToAsset(childObject, parentObject);
+
+			// Reimport the asset after adding an object.
+			// Otherwise the change only shows up when saving the project
+			AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(childObject));
+
+			// Print the path of the created asset
+			Debug.Log(AssetDatabase.GetAssetPath(childObject));
+		}
 	}
 }
