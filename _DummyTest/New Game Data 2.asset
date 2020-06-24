@@ -10,21 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 797ee9cbead4dd94a983621ee81c9662, type: 3}
-  m_Name: New Game Data
+  m_Name: New Game Data 2
   m_EditorClassIdentifier: 
   intTest: 0
-  stringTest: 
-  gameData:
-  - a: 25
-    b: 3
-    floats:
-    - 0
-  - a: 0
-    b: 0
-    floats: []
-  - a: 0
-    b: 0
-    floats: []
-  - a: 0
-    b: 0
-    floats: []
+  stringTest: Hello
+  boolTest: 0
+  arrayIntTest: 

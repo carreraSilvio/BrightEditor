@@ -13,13 +13,6 @@ MonoBehaviour:
   m_Name: New Game Data 1
   m_EditorClassIdentifier: 
   intTest: 0
-  stringTest: testing this out
-  gameData:
-  - a: 25
-    b: 3
-    floats:
-    - 2222
-    - 1111
-  - a: 0
-    b: 0
-    floats: []
+  stringTest: This is a string
+  boolTest: 0
+  arrayIntTest: 

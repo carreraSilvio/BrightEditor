@@ -9,29 +9,30 @@ public class ExtendedEditorWindow : EditorWindow
     private string selectedPropertyPath;
     protected SerializedProperty selectedProperty;
 
-    protected void DrawProperties(SerializedProperty prop, bool drawChildren)
+
+    protected void DrawProperties(SerializedProperty parentProperty, bool drawChildren)
     {
         string lastPropPath = string.Empty;
-        foreach(SerializedProperty p in prop)
+        foreach(SerializedProperty childProperty in parentProperty)
         {
-            if(p.isArray && p.propertyType == SerializedPropertyType.Generic)
+            if(childProperty.isArray && childProperty.propertyType == SerializedPropertyType.Generic)
             {
                 EditorGUILayout.BeginHorizontal();
-                p.isExpanded = EditorGUILayout.Foldout(p.isExpanded, p.displayName);
+                childProperty.isExpanded = EditorGUILayout.Foldout(childProperty.isExpanded, childProperty.displayName);
                 EditorGUILayout.EndHorizontal();
 
-                if(p.isExpanded)
+                if(childProperty.isExpanded)
                 {
                     EditorGUI.indentLevel++;
-                    DrawProperties(p, drawChildren);
+                    DrawProperties(childProperty, drawChildren);
                     EditorGUI.indentLevel--;
                 }
             }
             else
             {
-                if (!string.IsNullOrEmpty(lastPropPath) && p.propertyPath.Contains(lastPropPath)) { continue; }
-                lastPropPath = p.propertyPath;
-                EditorGUILayout.PropertyField(p, drawChildren);
+                if (!string.IsNullOrEmpty(lastPropPath) && childProperty.propertyPath.Contains(lastPropPath)) { continue; }
+                lastPropPath = childProperty.propertyPath;
+                EditorGUILayout.PropertyField(childProperty, drawChildren);
             }
         }
     }

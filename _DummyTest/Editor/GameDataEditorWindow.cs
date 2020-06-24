@@ -1,29 +1,45 @@
 ﻿using UnityEditor;
 using UnityEditor.Callbacks;
+using UnityEngine;
 
 public class GameDataEditorWindow : ExtendedEditorWindow
 {
     public static void Open(GameData gameData)
     {
-        GameDataEditorWindow wnd = GetWindow<GameDataEditorWindow>(gameData.name) ;
+        GameDataEditorWindow wnd = GetWindow<GameDataEditorWindow>() ;
+        wnd.titleContent = new UnityEngine.GUIContent(gameData.name);
         wnd.serializedObject = new SerializedObject(gameData);
     }
 
     private void OnGUI()
     {
+        Debug.Log("OnGUI");
+        SerializedProperty prop = serializedObject.GetIterator();
+        if (prop.NextVisible(true))
+        {
+            do
+            {
+                Debug.Log($"prop. Name {prop.name} Type {prop.propertyType}");
+                DrawProperties(prop, true);
+            } while (prop.NextVisible(false));
+        }
 
         //var it = serializedObject.GetIterator();
+        //it.Next(true);
 
         //do
         //{
-        //    //Debug.Log(it.name);
+        //    Debug.Log(it.name);
         //    Debug.Log(it.propertyType);
         //    //DrawField(it.propertyPath, false);
+        //    var property = it;
+        //    DrawProperties(property, true);
         //} while (it.Next(true));
 
-        DrawField("intTest", false);
-        DrawField("stringTest", false);
-        DrawField("gameData", false);
+        //DrawField("intTest", false);
+        //DrawField("stringTest", false);
+        //DrawField("gameData", false);
+
         //currentProperty = serializedObject.FindProperty("gameData");
         //DrawProperties(currentProperty, true);
 

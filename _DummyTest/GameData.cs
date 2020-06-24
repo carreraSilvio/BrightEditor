@@ -7,6 +7,9 @@ public class GameData : ScriptableObject
 {
     public int intTest;
     public string stringTest;
+    public bool boolTest;
 
-    public Test[] gameData;
+    public int[] arrayIntTest;
+
+    //public Test[] arrayTest;
 }
