@@ -27,7 +27,7 @@ namespace BrightLib.Scrubbing.Editor
                     {
                         EditorGUILayout.BeginHorizontal("box");
                         {
-                            DrawProperty(_selectedProperty);
+                            EditorGUILayout.PropertyField(_selectedProperty, includeChildren: true);
                         }
                         EditorGUILayout.EndHorizontal();
                     }

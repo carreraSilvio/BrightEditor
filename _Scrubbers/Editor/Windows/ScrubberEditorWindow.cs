@@ -1,12 +1,13 @@
 ﻿using BrightLib.BrightEditing;
 using UnityEditor;
+using UnityEngine;
 
 namespace BrightLib.Scrubbing.Editor
 {
     /// <summary>
     /// Editor Window that mimics the default inspector
     /// </summary>
-    public class ScrubberEditorWindow : BrightEditorWindow
+    public class ScrubberEditorWindow : EditorWindow
     {
         private SerializedObject _serializedObject;
         private SerializedProperty _currentProperty;
@@ -35,13 +36,13 @@ namespace BrightLib.Scrubbing.Editor
                 {
                     if (string.Equals(prop.name, "m_Script"))
                     {
-                        StartGreyedOutArea();
-                        DrawProperty(prop);
-                        EndGreyedOutArea();
+                        GUI.enabled = false;
+                        EditorGUILayout.PropertyField(prop, includeChildren: true);
+                        GUI.enabled = true;
                     }
                     else
                     {
-                        DrawProperty(prop);
+                        EditorGUILayout.PropertyField(prop, includeChildren: true);
                     }
                 }
                 while (prop.NextVisible(false));
@@ -55,7 +56,7 @@ namespace BrightLib.Scrubbing.Editor
             {
                 do
                 {
-                    DrawProperty(prop, includeChildren);
+                    EditorGUILayout.PropertyField(prop, includeChildren: true);
                 }
                 while (prop.NextVisible(false));
             }
