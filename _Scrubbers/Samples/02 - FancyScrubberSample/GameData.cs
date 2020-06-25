@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GameData")]
+[CreateAssetMenu(menuName = nameof(GameData))]
 public class GameData : ScriptableObject
 {
     public int intTest;
