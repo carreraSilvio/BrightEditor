@@ -1,18 +1,19 @@
-﻿using UnityEditor;
+﻿using BrightLib.Scrubbing;
+using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SkillData))]
-public class GameDataEditor : Editor
+[CustomEditor(typeof(ScrubData))]
+public class ScrubDataEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         if(GUILayout.Button("Open Scrubber"))
         {
-            Scrubber.OpenScrubberEditorWindow((SkillData)target);
+            Scrubber.OpenScrubberEditorWindow(target);
         }
         if (GUILayout.Button("Open Fancy Scrubber"))
         {
-            Scrubber.OpenFancyScrubberEditorWindow((SkillData)target);
+            Scrubber.OpenFancyScrubberEditorWindow(target);
         }
         base.OnInspectorGUI();
     }

@@ -2,40 +2,44 @@
 using UnityEditor;
 using UnityEditor.Callbacks;
 using Object = UnityEngine.Object;
-public sealed class Scrubber
+
+namespace BrightLib.Scrubbing
 {
-    public static void OpenScrubberEditorWindow(Object scrubData)
+    public sealed class Scrubber
     {
-        ScrubberEditorWindow wnd = EditorWindow.CreateWindow<ScrubberEditorWindow>(new Type[] { typeof(ScrubberEditorWindow) });
-        wnd.titleContent = new UnityEngine.GUIContent(scrubData.name);
-        wnd.SerializedObject = new SerializedObject(scrubData);
-    }
-
-    public static void OpenFancyScrubberEditorWindow(Object scrubData)
-    {
-        FancyScrubberEditorWindow wnd = EditorWindow.CreateWindow<FancyScrubberEditorWindow>(new Type[] { typeof(FancyScrubberEditorWindow) });
-        wnd.titleContent = new UnityEngine.GUIContent(scrubData.name);
-        wnd.SerializedObject = new SerializedObject(scrubData);
-    }
-
-    [OnOpenAsset()]
-    public static bool HandleClickScrubData(int instanceId, int line)
-    {
-        Object obj = EditorUtility.InstanceIDToObject(instanceId) as Object;
-        
-        if (obj != null)
+        public static void OpenScrubberEditorWindow(Object scrubData)
         {
-            if(obj is IScrubData)
-            {
-                OpenScrubberEditorWindow(obj);
-                return true;
-            }
-            else if(obj is IFancyScrubData)
-            {
-                OpenFancyScrubberEditorWindow(obj);
-                return true;
-            }
+            ScrubberEditorWindow wnd = EditorWindow.CreateWindow<ScrubberEditorWindow>(new Type[] { typeof(ScrubberEditorWindow) });
+            wnd.titleContent = new UnityEngine.GUIContent(scrubData.name);
+            wnd.SerializedObject = new SerializedObject(scrubData);
         }
-        return false;
+
+        public static void OpenFancyScrubberEditorWindow(Object scrubData)
+        {
+            FancyScrubberEditorWindow wnd = EditorWindow.CreateWindow<FancyScrubberEditorWindow>(new Type[] { typeof(FancyScrubberEditorWindow) });
+            wnd.titleContent = new UnityEngine.GUIContent(scrubData.name);
+            wnd.SerializedObject = new SerializedObject(scrubData);
+        }
+
+        [OnOpenAsset()]
+        public static bool HandleClickScrubData(int instanceId, int line)
+        {
+            Object obj = EditorUtility.InstanceIDToObject(instanceId) as Object;
+
+            if (obj != null)
+            {
+                if (obj is IScrubData)
+                {
+                    OpenScrubberEditorWindow(obj);
+                    return true;
+                }
+                else if (obj is IFancyScrubData)
+                {
+                    OpenFancyScrubberEditorWindow(obj);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
