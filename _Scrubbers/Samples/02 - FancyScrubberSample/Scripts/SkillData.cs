@@ -1,14 +1,17 @@
 ﻿using BrightLib.Scrubbing.Runtime;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = nameof(SkillData))]
-public class SkillData : ScriptableObject, IFancyScrubData
+namespace BrightLib.Scrubbing.Samples
 {
-    public string description;
-    public int useCost;
-    public bool boolTest;
+    [CreateAssetMenu(menuName = nameof(SkillData))]
+    public class SkillData : ScriptableObject, IFancyScrubData
+    {
+        public string description;
+        public int useCost;
+        public bool boolTest;
 
-    public int[] arrayIntTest;
+        public int[] arrayIntTest;
 
-    public SkillEffect[] effects;
+        public SkillEffect[] effects;
+    }
 }

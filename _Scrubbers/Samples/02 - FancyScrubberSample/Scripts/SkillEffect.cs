@@ -1,7 +1,10 @@
-﻿[System.Serializable]
-public class SkillEffect
+﻿namespace BrightLib.Scrubbing.Samples
 {
-    public int damage;
-    public int heal;
-    public float[] floats;
+    [System.Serializable]
+    public class SkillEffect
+    {
+        public int damage;
+        public int heal;
+        public float[] floats;
+    }
 }
