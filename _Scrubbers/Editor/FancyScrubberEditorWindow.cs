@@ -9,8 +9,6 @@ public class FancyScrubberEditorWindow : ScrubberEditorWindow
     private SerializedProperty _selectedProperty;
     private string _selectedPropertyPath;
 
-
-
     public override void OnGUI()
     {
         EditorGUILayout.BeginHorizontal();
@@ -52,9 +50,7 @@ public class FancyScrubberEditorWindow : ScrubberEditorWindow
             {
                 if (string.Equals(prop.name, "m_Script"))
                 {
-                    StartGreyedOutArea();
-                    DrawProperty(prop);
-                    EndGreyedOutArea();
+                    continue;
                 }
                 else
                 {

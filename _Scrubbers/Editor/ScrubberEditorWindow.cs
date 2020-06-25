@@ -1,7 +1,5 @@
 ﻿using BrightLib.BrightEditing;
-using System;
 using UnityEditor;
-using UnityEngine;
 
 /// <summary>
 /// Editor Window that mimics the default inspector
@@ -11,10 +9,8 @@ public class ScrubberEditorWindow : BrightEditorWindow
     private SerializedObject _serializedObject;
     private SerializedProperty _currentProperty;
 
-    protected SerializedObject SerializedObject { get => _serializedObject; set => _serializedObject = value; }
-    protected SerializedProperty CurrentProperty { get => _currentProperty; set => _currentProperty = value; }
-
-
+    internal SerializedObject SerializedObject { get => _serializedObject; set => _serializedObject = value; }
+    internal SerializedProperty CurrentProperty { get => _currentProperty; set => _currentProperty = value; }
 
     public virtual void OnGUI()
     {
@@ -63,8 +59,4 @@ public class ScrubberEditorWindow : BrightEditorWindow
         }
     }
 
-
-
 }
-
-
