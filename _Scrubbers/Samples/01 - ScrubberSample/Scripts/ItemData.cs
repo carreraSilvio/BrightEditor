@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BrightLib.Scrubbing.Runtime;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = nameof(ItemData))]
 public class ItemData : ScriptableObject, IScrubData

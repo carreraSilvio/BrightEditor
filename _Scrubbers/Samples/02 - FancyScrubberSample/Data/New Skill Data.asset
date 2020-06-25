@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fd4c05cea42294aabb3ab6d3cab9ea, type: 3}
   m_Name: New Skill Data
   m_EditorClassIdentifier: 
-  intTest: 0
-  stringTest: 
+  description: 
+  useCost: 0
   boolTest: 0
   arrayIntTest: 
   effects:

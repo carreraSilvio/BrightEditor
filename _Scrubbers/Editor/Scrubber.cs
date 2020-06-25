@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BrightLib.Scrubbing.Runtime;
+using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using Object = UnityEngine.Object;
 
-namespace BrightLib.Scrubbing
+namespace BrightLib.Scrubbing.Editor
 {
     public sealed class Scrubber
     {
