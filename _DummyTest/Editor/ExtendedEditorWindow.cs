@@ -1,41 +1,62 @@
-﻿using UnityEditor;
+﻿using BrightLib.BrightEditing;
+using UnityEditor;
 using UnityEngine;
 
-public class ExtendedEditorWindow : EditorWindow
+public class ExtendedEditorWindow : BrightEditorWindow
 {
-    protected SerializedObject serializedObject;
-    protected SerializedProperty currentProperty;
+    private SerializedObject _serializedObject;
+    private SerializedProperty _currentProperty;
 
-    private string selectedPropertyPath;
-    protected SerializedProperty selectedProperty;
+    private string _selectedPropertyPath;
+    private SerializedProperty _selectedProperty;
+    private string _serializedObjectPath;
 
+    protected SerializedObject SerializedObject { get => _serializedObject; set => _serializedObject = value; }
+    protected SerializedProperty CurrentProperty { get => _currentProperty; set => _currentProperty = value; }
 
-    protected void DrawProperties(SerializedProperty parentProperty, bool drawChildren)
+    protected string SelectedPropertyPath { get => _selectedPropertyPath; set => _selectedPropertyPath = value; }
+    protected SerializedProperty SelectedProperty { get => _selectedProperty; set => _selectedProperty = value; }
+    protected string SerializedObjectPath { get => _serializedObjectPath; set => _serializedObjectPath = value; }
+
+    /// <summary>
+    /// Draws all visible properties and the script field greyed out. Set <see cref="SerializedObject"/> first
+    /// </summary>
+    protected void DrawAllVisibleProperties()
     {
-        string lastPropPath = string.Empty;
-        foreach(SerializedProperty childProperty in parentProperty)
-        {
-            if(childProperty.isArray && childProperty.propertyType == SerializedPropertyType.Generic)
-            {
-                EditorGUILayout.BeginHorizontal();
-                childProperty.isExpanded = EditorGUILayout.Foldout(childProperty.isExpanded, childProperty.displayName);
-                EditorGUILayout.EndHorizontal();
+        if (_serializedObject == null) return;
 
-                if(childProperty.isExpanded)
-                {
-                    EditorGUI.indentLevel++;
-                    DrawProperties(childProperty, drawChildren);
-                    EditorGUI.indentLevel--;
-                }
-            }
-            else
+        SerializedProperty prop = _serializedObject.GetIterator();
+        if (prop.NextVisible(true))
+        {
+            do
             {
-                if (!string.IsNullOrEmpty(lastPropPath) && childProperty.propertyPath.Contains(lastPropPath)) { continue; }
-                lastPropPath = childProperty.propertyPath;
-                EditorGUILayout.PropertyField(childProperty, drawChildren);
-            }
+                if (string.Equals(prop.name, "m_Script"))
+                {
+                    StartGreyedOutArea();
+                    DrawProperty(prop);
+                    EndGreyedOutArea();
+                }
+                else
+                {
+                    DrawProperty(prop);
+                }
+            } 
+            while (prop.NextVisible(false));
         }
     }
+
+    protected void DrawAllVisibleProperties(SerializedObject serializedObject, bool drawChildren)
+    {
+        SerializedProperty prop = _serializedObject.GetIterator();
+        if (prop.NextVisible(true))
+        {
+            do
+            {
+                DrawProperty(prop);
+            } 
+            while (prop.NextVisible(false));
+        }
+    } 
 
     protected void DrawSidebar(SerializedProperty prop)
     {
@@ -43,31 +64,31 @@ public class ExtendedEditorWindow : EditorWindow
         {
             if(GUILayout.Button(p.displayName))
             {
-                selectedPropertyPath = p.propertyPath;
+                _selectedPropertyPath = p.propertyPath;
             }
         }
 
-        if(!string.IsNullOrEmpty(selectedPropertyPath))
+        if(!string.IsNullOrEmpty(_selectedPropertyPath))
         {
-            selectedProperty = serializedObject.FindProperty(selectedPropertyPath);
+            _selectedProperty = _serializedObject.FindProperty(_selectedPropertyPath);
         }
     }
 
     protected void DrawField(string propName, bool relative)
     {
-        if(relative && currentProperty != null)
+        if(relative && _currentProperty != null)
         {
-            var prop = currentProperty.FindPropertyRelative(propName);
+            var prop = _currentProperty.FindPropertyRelative(propName);
             if(prop == null)
             {
                 Debug.LogWarning($"cant find {propName}");
                 return;
             }
-            EditorGUILayout.PropertyField(currentProperty.FindPropertyRelative(propName), true);
+            EditorGUILayout.PropertyField(_currentProperty.FindPropertyRelative(propName), true);
         }
-        else if(serializedObject != null)
+        else if(_serializedObject != null)
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty(propName), true);
+            EditorGUILayout.PropertyField(_serializedObject.FindProperty(propName), true);
         }
     }
 

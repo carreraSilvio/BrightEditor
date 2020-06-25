@@ -11,5 +11,5 @@ public class GameData : ScriptableObject
 
     public int[] arrayIntTest;
 
-    //public Test[] arrayTest;
+    public Test[] arrayTest;
 }

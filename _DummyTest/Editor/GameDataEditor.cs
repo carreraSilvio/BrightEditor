@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Callbacks;
+﻿using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(GameData))]

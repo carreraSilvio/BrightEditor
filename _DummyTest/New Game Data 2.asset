@@ -15,4 +15,8 @@ MonoBehaviour:
   intTest: 0
   stringTest: Hello
   boolTest: 0
-  arrayIntTest: 
+  arrayIntTest: 0300000000000000
+  arrayTest:
+  - a: 0
+    b: 0
+    floats: []

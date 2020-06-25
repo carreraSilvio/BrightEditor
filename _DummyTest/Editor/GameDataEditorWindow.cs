@@ -1,28 +1,31 @@
 ﻿using UnityEditor;
 using UnityEditor.Callbacks;
-using UnityEngine;
 
 public class GameDataEditorWindow : ExtendedEditorWindow
 {
     public static void Open(GameData gameData)
     {
-        GameDataEditorWindow wnd = GetWindow<GameDataEditorWindow>() ;
+        GameDataEditorWindow wnd = EditorWindow.CreateWindow<GameDataEditorWindow>() ;
         wnd.titleContent = new UnityEngine.GUIContent(gameData.name);
-        wnd.serializedObject = new SerializedObject(gameData);
+        wnd.SerializedObject = new SerializedObject(gameData);
     }
 
     private void OnGUI()
     {
-        Debug.Log("OnGUI");
-        SerializedProperty prop = serializedObject.GetIterator();
-        if (prop.NextVisible(true))
-        {
-            do
-            {
-                Debug.Log($"prop. Name {prop.name} Type {prop.propertyType}");
-                DrawProperties(prop, true);
-            } while (prop.NextVisible(false));
-        }
+        DrawAllVisibleProperties();
+
+        //SerializedProperty prop = serializedObject.GetIterator();
+        //if (prop.NextVisible(true))
+        //{
+        //    do
+        //    {
+        //        Debug.Log($"prop. Name {prop.name} Type {prop.propertyType}");
+        //        DrawProperties(prop, true);
+        //    } while (prop.NextVisible(false));
+        //}
+
+        //var currentProperty = _serializedObject.FindProperty("arrayIntTest");
+        //DrawProperties(currentProperty, true);
 
         //var it = serializedObject.GetIterator();
         //it.Next(true);
@@ -68,12 +71,12 @@ public class GameDataEditorWindow : ExtendedEditorWindow
         //EditorGUILayout.EndVertical();
         //EditorGUILayout.EndHorizontal();
 
-        serializedObject.ApplyModifiedProperties();
+        SerializedObject.ApplyModifiedProperties();
     }
 
     private void DrawSelectedPropertiesPanel()
     {
-        currentProperty = selectedProperty;
+        CurrentProperty = SelectedProperty;
 
         EditorGUILayout.BeginHorizontal("box");
 
