@@ -35,12 +35,12 @@ namespace BrightLib.BrightEditing
 		/// </summary>
 		public void ResetIndentLevel() => BrightEditorUtility.ResetIndentLevel();
 
-		public static void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
+		public void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
 
 		/// <summary>
 		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
 		/// </summary>
-		public static void ResetLabelWidth() => SetLabelWidth(0f);
+		public  void ResetLabelWidth() => SetLabelWidth(0f);
 
 
 		public void DrawLabel(ref Rect baseRect, string label = "label", string label2 = "label2", float increaseX = 0f, float increaseY = 0)
@@ -77,6 +77,14 @@ namespace BrightLib.BrightEditing
 			EditorGUI.PropertyField(rect, property);
 		}
 
+		public void DrawPropertyWithNoLabel(ref Rect baseRect, SerializedProperty property, string propertyRelativeName, float offsetRectX = 0f, float offsetRectY = 0, float widthPercent = 1)
+		{
+			if (FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty propertyRelative))
+			{
+				DrawPropertyWithNoLabel(ref baseRect, propertyRelative, offsetRectX, offsetRectY, widthPercent);
+			}
+		}
+
 
 		public void DrawPropertyWithNoLabel(Rect baseRect, SerializedProperty property, string propertyRelativeName)
 		{
@@ -105,6 +113,8 @@ namespace BrightLib.BrightEditing
 			EditorGUI.PropertyField(rect, property, GUIContent.none);
 		}
 
+
+
 		protected bool FetchPropertyRelative(SerializedProperty property, string propertyRelativeName, out SerializedProperty propertyRelative)
 		{
 			propertyRelative = property.FindPropertyRelative(propertyRelativeName);
@@ -115,6 +125,9 @@ namespace BrightLib.BrightEditing
 			Debug.LogWarning($"{propertyRelativeName} not found in object {property.displayName}");
 			return false;
 		}
+
+		protected SerializedProperty FetchPropertyRelative(SerializedProperty property, string propertyRelativeName) => property.FindPropertyRelative(propertyRelativeName);
+	
 	}
 }
 
