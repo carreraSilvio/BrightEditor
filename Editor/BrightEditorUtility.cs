@@ -5,10 +5,12 @@ using UnityEngine;
 namespace BrightLib.BrightEditing
 {
 	/// <summary>
-	/// Collection of methods that wraps <see cref="GUI"/>, <see cref="GUILayout"/>, <see cref="EditorGUI"/> and <see cref="EditorGUILayout"/> methods. 
+	/// Utility class with that wraps <see cref="GUI"/>, <see cref="GUILayout"/>, <see cref="EditorGUI"/> and <see cref="EditorGUILayout"/> methods. 
 	/// </summary>
-	public static class BrightEditorUtility
+	public sealed class BrightEditorUtility
 	{
+		private BrightEditorUtility() { }
+
 		#region Draw Int
 
 		/// <summary>
@@ -171,45 +173,37 @@ namespace BrightLib.BrightEditing
 		/// <summary>
 		/// Allow fields after this to be seen but not altered via inspector.
 		/// </summary>
-		public static void StartGreyedOutArea(bool toggle = true)
-			=> GUI.enabled = !toggle;
+		public static void StartGreyedOutArea(bool toggle = true) => GUI.enabled = !toggle;
 
 		/// <summary>
 		/// Allow fields after this to be seen and altered via inspector.
 		/// </summary>
-		public static void EndGreyedOutArea()
-			=> GUI.enabled = true;
+		public static void EndGreyedOutArea() => GUI.enabled = true;
 
 		/// <summary>
 		/// Increase indent level by 1
 		/// </summary>
-		public static void IncreaseIndentLevel()
-			=> EditorGUI.indentLevel++;
+		public static void IncreaseIndentLevel() => EditorGUI.indentLevel++;
 
 		/// <summary>
 		/// Decrease indent level by 1
 		/// </summary>
-		public static void DecreaseIndentLevel()
-			=> EditorGUI.indentLevel--;
+		public static void DecreaseIndentLevel() => EditorGUI.indentLevel--;
 
 		/// <summary>
 		/// Set indent level back to 0
 		/// </summary>
-		public static void ResetIndentLevel()
-			=> EditorGUI.indentLevel = 0;
-		
+		public static void ResetIndentLevel() => EditorGUI.indentLevel = 0;
 
 		/// <summary>
-		/// Sets the default label width back.
+		/// Sets the default label width to the given width
 		/// </summary>
-		public static void SetLabelWidth(float labelWidth)
-			=> EditorGUIUtility.labelWidth = labelWidth;
+		public static void SetLabelWidth(float labelWidth) => EditorGUIUtility.labelWidth = labelWidth;
 		
 		/// <summary>
 		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
 		/// </summary>
-		public static void ResetLabelWidth()
-			=> SetLabelWidth(0f); 
+		public static void ResetLabelWidth() => SetLabelWidth(0f); 
 
 
 		public static class EditorIcons

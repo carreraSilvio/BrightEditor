@@ -1,12 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace BrightLib.BrightEditing
 {
-    /// <summary>
-	/// Derives <see cref="Gizmos"/> with quality-of-life methods.
+	/// <summary>
+	/// Extends <see cref="Gizmos"/> with quality-of-life methods.
 	/// </summary>
-    public sealed class BrightGizmos 
+	public sealed class BrightGizmos 
     {
+		private BrightGizmos() { }
+
 		public static void DrawArrow(Vector3 from, Vector3 direction, float headLength = 0.25f, float headAngle = 20.0f)
 		{
 #if UNITY_EDITOR
@@ -17,6 +20,24 @@ namespace BrightLib.BrightEditing
 			Gizmos.DrawRay(from + direction, right * headLength);
 			Gizmos.DrawRay(from + direction, left * headLength);
 #endif
+		}
+
+
+		/// <summary>
+		/// TODO
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
+		/// <param name="pieces"></param>
+		public static void DrawDashedLine(Vector3 from, Vector3 to, int pieces = 2)
+		{
+			var direction = to - from;
+			direction = direction.normalized;
+
+			var localFrom = from;
+
+			
+
 		}
 	}
 }

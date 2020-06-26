@@ -8,49 +8,39 @@ namespace BrightLib.BrightEditing
 	/// </summary>
 	public class BrightPropertyDrawer : PropertyDrawer
 	{
-		public float SingleLineHeight
-			=> EditorGUIUtility.singleLineHeight;
+		public float SingleLineHeight => EditorGUIUtility.singleLineHeight;
 
 		/// <summary>
 		/// Allow fields after this to be seen but not altered via inspector.
 		/// </summary>
-		public void StartGreyedOutArea(bool toggle = true)
-			=> BrightEditorUtility.StartGreyedOutArea(toggle);
+		public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
 
 		/// <summary>
 		/// Allow fields after this to be seen and altered via inspector.
 		/// </summary>
-		public void EndGreyedOutArea()
-			=> BrightEditorUtility.EndGreyedOutArea();
+		public void EndGreyedOutArea() => BrightEditorUtility.EndGreyedOutArea();
 
 		/// <summary>
 		/// Increase indent level by 1
 		/// </summary>
-		public void IncreaseIndentLevel()
-			=> BrightEditorUtility.IncreaseIndentLevel();
-
+		public void IncreaseIndentLevel() => BrightEditorUtility.IncreaseIndentLevel();
 
 		/// <summary>
 		/// Decrease indent level by 1
 		/// </summary>
-		public void DecreaseIndentLevel()
-			=> BrightEditorUtility.DecreaseIndentLevel();
-
+		public void DecreaseIndentLevel() => BrightEditorUtility.DecreaseIndentLevel();
 
 		/// <summary>
 		/// Set indent level back to 0
 		/// </summary>
-		public void ResetIndentLevel()
-			=> BrightEditorUtility.ResetIndentLevel();
+		public void ResetIndentLevel() => BrightEditorUtility.ResetIndentLevel();
 
-		public static void SetLabelWidth(float labelWidth)
-			=> BrightEditorUtility.SetLabelWidth(labelWidth);
+		public static void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
 
 		/// <summary>
 		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
 		/// </summary>
-		public static void ResetLabelWidth()
-			=> SetLabelWidth(0f);
+		public static void ResetLabelWidth() => SetLabelWidth(0f);
 
 
 		public void DrawLabel(ref Rect baseRect, string label = "label", string label2 = "label2", float increaseX = 0f, float increaseY = 0)
