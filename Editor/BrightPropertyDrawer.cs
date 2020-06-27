@@ -8,47 +8,34 @@ namespace BrightLib.BrightEditing
 	/// </summary>
 	public class BrightPropertyDrawer : PropertyDrawer
 	{
-		public float SingleLineHeight => EditorGUIUtility.singleLineHeight;
 
-		/// <summary>
-		/// Allow fields after this to be seen but not altered via inspector.
-		/// </summary>
-		public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
+		protected void DrawSpace(ref Rect baseRect, float increaseY = 0f)
+		{
+			DrawLabel(ref baseRect, "", increaseY);
+		}
 
-		/// <summary>
-		/// Allow fields after this to be seen and altered via inspector.
-		/// </summary>
-		public void EndGreyedOutArea() => BrightEditorUtility.EndGreyedOutArea();
+		protected void DrawLabel(ref Rect baseRect, string text, float increaseY = 0f)
+		{
+			baseRect.y += increaseY;
+			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
 
-		/// <summary>
-		/// Increase indent level by 1
-		/// </summary>
-		public void IncreaseIndentLevel() => BrightEditorUtility.IncreaseIndentLevel();
+			EditorGUI.LabelField(rect, text);
+		}
 
-		/// <summary>
-		/// Decrease indent level by 1
-		/// </summary>
-		public void DecreaseIndentLevel() => BrightEditorUtility.DecreaseIndentLevel();
-
-		/// <summary>
-		/// Set indent level back to 0
-		/// </summary>
-		public void ResetIndentLevel() => BrightEditorUtility.ResetIndentLevel();
-
-		public void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
-
-		/// <summary>
-		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
-		/// </summary>
-		public  void ResetLabelWidth() => SetLabelWidth(0f);
-
-
-		public void DrawLabel(ref Rect baseRect, string label = "label", string label2 = "label2", float increaseX = 0f, float increaseY = 0)
+		public void DrawLabel(ref Rect baseRect, string label, string label2, float increaseX = 0f, float increaseY = 0)
 		{
 			baseRect.x += increaseX;
 			baseRect.y += increaseY;
 			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
 			EditorGUI.LabelField(rect, label, label2);
+		}
+
+		protected void DrawBoldLabel(ref Rect baseRect, string text, float increaseY = 0f)
+		{
+			baseRect.y += increaseY;
+			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
+
+			EditorGUI.LabelField(rect, text, EditorStyles.boldLabel);
 		}
 
 		public void DrawProperty(Rect baseRect, SerializedProperty property, string propertyRelativeName, float increaseX = 0f, float increaseY = 0)
@@ -127,7 +114,44 @@ namespace BrightLib.BrightEditing
 		}
 
 		protected SerializedProperty FetchPropertyRelative(SerializedProperty property, string propertyRelativeName) => property.FindPropertyRelative(propertyRelativeName);
-	
+
+		/// <summary>
+		/// Get the height used for a single Editor control such as a one-line EditorGUI.TextField
+		/// </summary>
+		public float SingleLineHeight => EditorGUIUtility.singleLineHeight;
+
+		/// <summary>
+		/// Allow fields after this to be seen but not altered via inspector.
+		/// </summary>
+		public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
+
+		/// <summary>
+		/// Allow fields after this to be seen and altered via inspector.
+		/// </summary>
+		public void EndGreyedOutArea() => BrightEditorUtility.EndGreyedOutArea();
+
+		/// <summary>
+		/// Increase indent level by 1
+		/// </summary>
+		public void IncreaseIndentLevel() => BrightEditorUtility.IncreaseIndentLevel();
+
+		/// <summary>
+		/// Decrease indent level by 1
+		/// </summary>
+		public void DecreaseIndentLevel() => BrightEditorUtility.DecreaseIndentLevel();
+
+		/// <summary>
+		/// Set indent level back to 0
+		/// </summary>
+		public void ResetIndentLevel() => BrightEditorUtility.ResetIndentLevel();
+
+		public void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
+
+		/// <summary>
+		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
+		/// </summary>
+		public void ResetLabelWidth() => SetLabelWidth(0f);
+
 	}
 }
 
