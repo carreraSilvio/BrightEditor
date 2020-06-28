@@ -8,7 +8,6 @@ namespace BrightLib.BrightEditing
 	/// </summary>
 	public class BrightPropertyDrawer : PropertyDrawer
 	{
-
 		protected void DrawSpace(ref Rect baseRect, float increaseY = 0f)
 		{
 			DrawLabel(ref baseRect, "", increaseY);
@@ -156,14 +155,20 @@ namespace BrightLib.BrightEditing
 		/// </summary>
 		public void ResetLabelWidth() => SetLabelWidth(0f);
 
-		public SerializedProperty AddEntryInArray(SerializedProperty propertyArray)
+		/// <summary>
+		/// Insert an empty element at the end of the array and return it.
+		/// </summary>
+		public SerializedProperty InsertArrayElement(SerializedProperty propertyArray)
 		{
 			propertyArray.InsertArrayElementAtIndex(propertyArray.arraySize);
 			var newEntry = propertyArray.GetArrayElementAtIndex(propertyArray.arraySize - 1);
 			return newEntry;
 		}
 
-		public bool RemoveEntryFromArray(SerializedProperty propertyArray)
+		/// <summary>
+		/// Delete the element at the last index in the array
+		/// </summary>
+		public bool DeleteArrayElement(SerializedProperty propertyArray)
 		{
 			if (propertyArray.GetArrayElementAtIndex(propertyArray.arraySize - 1) != null)
 			{
@@ -172,6 +177,8 @@ namespace BrightLib.BrightEditing
 			}
 			return false;
 		}
+
+
 
 	}
 }
