@@ -22,14 +22,6 @@ namespace BrightLib.BrightEditing
 			EditorGUI.LabelField(rect, text);
 		}
 
-		public void DrawLabel(ref Rect baseRect, string label, string label2, float increaseX = 0f, float increaseY = 0)
-		{
-			baseRect.x += increaseX;
-			baseRect.y += increaseY;
-			Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
-			EditorGUI.LabelField(rect, label, label2);
-		}
-
 		protected void DrawBoldLabel(ref Rect baseRect, string text, float increaseY = 0f)
 		{
 			baseRect.y += increaseY;
