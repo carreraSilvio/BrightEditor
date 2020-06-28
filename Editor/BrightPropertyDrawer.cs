@@ -136,6 +136,11 @@ namespace BrightLib.BrightEditing
 		/// <summary>
 		/// Sets the default label width to the given width
 		/// </summary>
+		public void SetLabelWidth(Rect rect, float rectWidthPercent) => BrightEditorUtility.SetLabelWidth(rect.width * rectWidthPercent);
+
+		/// <summary>
+		/// Sets the default label width to the given width
+		/// </summary>
 		public void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
 
 		/// <summary>
