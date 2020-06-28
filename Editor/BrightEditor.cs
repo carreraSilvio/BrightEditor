@@ -56,7 +56,7 @@ namespace BrightLib.BrightEditing
 			{
 				return property;
 			}
-			Debug.LogWarning($"{propertyName} not found in object {name}");
+			Debug.LogWarning($"\"{propertyName}\" not found in object \"{name}\"");
 			return null;
 		}
 
