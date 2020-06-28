@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace BrightLib.BrightEditing
@@ -7,7 +6,7 @@ namespace BrightLib.BrightEditing
     /// <summary>
 	/// Will draw all child properties like a basic inspector would
 	/// </summary>
-    public class NewActorCommandDrawer : BrightPropertyDrawer
+    public class SimplePropertyDrawer : BrightPropertyDrawer
     {
         private int _dynamicPropertiesTotal = 1;
 
