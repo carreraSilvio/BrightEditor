@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace BrightLib.BrightEditing
@@ -8,10 +9,10 @@ namespace BrightLib.BrightEditing
 	/// </summary>
 	public class BrightPropertyDrawer : PropertyDrawer
 	{
-		protected void DrawSpace(ref Rect baseRect, float increaseY = 0f)
-		{
-			DrawLabel(ref baseRect, "", increaseY);
-		}
+		/// <summary>
+		/// Draw an empty space at rect + offset
+		/// </summary>
+		protected void DrawSpace(ref Rect baseRect, float offsetY = 0f) => DrawLabel(ref baseRect, "", offsetY);
 
 		protected void DrawLabel(ref Rect baseRect, string text, float increaseY = 0f)
 		{
@@ -99,8 +100,6 @@ namespace BrightLib.BrightEditing
 			EditorGUI.PropertyField(rect, property, GUIContent.none);
 		}
 
-
-
 		protected bool FetchPropertyRelative(SerializedProperty property, string propertyRelativeName, out SerializedProperty propertyRelative)
 		{
 			propertyRelative = property.FindPropertyRelative(propertyRelativeName);
@@ -118,15 +117,12 @@ namespace BrightLib.BrightEditing
 			return result;
 		}
 
-		/// <summary>
-		/// Get the height used for a single Editor control such as a one-line EditorGUI.TextField
-		/// </summary>
-		public float SingleLineHeight => EditorGUIUtility.singleLineHeight;
+        #region GreyedOut Area and Indent Level
 
-		/// <summary>
-		/// Allow fields after this to be seen but not altered via inspector.
-		/// </summary>
-		public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
+        /// <summary>
+        /// Allow fields after this to be seen but not altered via inspector.
+        /// </summary>
+        public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
 
 		/// <summary>
 		/// Allow fields after this to be seen and altered via inspector.
@@ -148,6 +144,19 @@ namespace BrightLib.BrightEditing
 		/// </summary>
 		public void ResetIndentLevel() => BrightEditorUtility.ResetIndentLevel();
 
+        #endregion
+
+
+        #region LineHeight and Label Width
+
+        /// <summary>
+        /// Get the height used for a single Editor control such as a one-line EditorGUI.TextField
+        /// </summary>
+        public float SingleLineHeight => EditorGUIUtility.singleLineHeight;
+
+		/// <summary>
+		/// Sets the default label width to the given width
+		/// </summary>
 		public void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
 
 		/// <summary>
@@ -155,10 +164,12 @@ namespace BrightLib.BrightEditing
 		/// </summary>
 		public void ResetLabelWidth() => SetLabelWidth(0f);
 
-		/// <summary>
-		/// Insert an empty element at the end of the array and return it.
-		/// </summary>
-		public SerializedProperty InsertArrayElement(SerializedProperty propertyArray)
+        #endregion
+
+        /// <summary>
+        /// Insert an empty element at the end of the array and return it.
+        /// </summary>
+        public SerializedProperty InsertArrayElement(SerializedProperty propertyArray)
 		{
 			propertyArray.InsertArrayElementAtIndex(propertyArray.arraySize);
 			var newEntry = propertyArray.GetArrayElementAtIndex(propertyArray.arraySize - 1);
@@ -176,6 +187,58 @@ namespace BrightLib.BrightEditing
 				return true;
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// Gets all children of `SerializedProperty` at 1 level depth.
+		/// </summary>
+		/// <param name="serializedProperty">Parent `SerializedProperty`.</param>
+		/// <returns>Collection of `SerializedProperty` children.</returns>
+		public static IEnumerable<SerializedProperty> GetChildren(SerializedProperty serializedProperty)
+		{
+			SerializedProperty currentProperty = serializedProperty.Copy();
+			SerializedProperty nextSiblingProperty = serializedProperty.Copy();
+			{
+				nextSiblingProperty.Next(false);
+			}
+
+			if (currentProperty.Next(true))
+			{
+				do
+				{
+					if (SerializedProperty.EqualContents(currentProperty, nextSiblingProperty))
+						break;
+
+					yield return currentProperty;
+				}
+				while (currentProperty.Next(false));
+			}
+		}
+
+		/// <summary>
+		/// Gets visible children of `SerializedProperty` at 1 level depth.
+		/// </summary>
+		/// <param name="serializedProperty">Parent `SerializedProperty`.</param>
+		/// <returns>Collection of `SerializedProperty` children.</returns>
+		public static IEnumerable<SerializedProperty> GetVisibleChildren(SerializedProperty serializedProperty)
+		{
+			SerializedProperty currentProperty = serializedProperty.Copy();
+			SerializedProperty nextSiblingProperty = serializedProperty.Copy();
+			{
+				nextSiblingProperty.NextVisible(false);
+			}
+
+			if (currentProperty.NextVisible(true))
+			{
+				do
+				{
+					if (SerializedProperty.EqualContents(currentProperty, nextSiblingProperty))
+						break;
+
+					yield return currentProperty;
+				}
+				while (currentProperty.NextVisible(false));
+			}
 		}
 
 
