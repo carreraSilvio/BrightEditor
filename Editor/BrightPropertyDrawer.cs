@@ -113,7 +113,11 @@ namespace BrightLib.BrightEditing
 			return false;
 		}
 
-		protected SerializedProperty FetchPropertyRelative(SerializedProperty property, string propertyRelativeName) => property.FindPropertyRelative(propertyRelativeName);
+		protected SerializedProperty FetchPropertyRelative(SerializedProperty property, string propertyRelativeName)
+		{
+			FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty result);
+			return result;
+		}
 
 		/// <summary>
 		/// Get the height used for a single Editor control such as a one-line EditorGUI.TextField
@@ -151,6 +155,23 @@ namespace BrightLib.BrightEditing
 		/// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
 		/// </summary>
 		public void ResetLabelWidth() => SetLabelWidth(0f);
+
+		public SerializedProperty AddEntryInArray(SerializedProperty propertyArray)
+		{
+			propertyArray.InsertArrayElementAtIndex(propertyArray.arraySize);
+			var newEntry = propertyArray.GetArrayElementAtIndex(propertyArray.arraySize - 1);
+			return newEntry;
+		}
+
+		public bool RemoveEntryFromArray(SerializedProperty propertyArray)
+		{
+			if (propertyArray.GetArrayElementAtIndex(propertyArray.arraySize - 1) != null)
+			{
+				propertyArray.DeleteArrayElementAtIndex(propertyArray.arraySize - 1);
+				return true;
+			}
+			return false;
+		}
 
 	}
 }
