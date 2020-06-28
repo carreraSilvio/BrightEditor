@@ -30,9 +30,6 @@ namespace BrightLib.BrightEditing
 			EditorGUI.LabelField(rect, text, EditorStyles.boldLabel);
 		}
 
-		public void DrawProperty(Rect baseRect, SerializedProperty property, string propertyRelativeName, float increaseX = 0f, float increaseY = 0)
-			 => DrawProperty(ref baseRect, property, propertyRelativeName, increaseX, increaseY);
-
 		public void DrawProperty(ref Rect baseRect, SerializedProperty property, string propertyRelativeName, float increaseX = 0f, float increaseY = 0, float labelWidth = 0)
 		{
 			if (FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty propertyRelative))
@@ -64,15 +61,6 @@ namespace BrightLib.BrightEditing
 			}
 		}
 
-
-		public void DrawPropertyWithNoLabel(Rect baseRect, SerializedProperty property, string propertyRelativeName)
-		{
-			if (FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty propertyRelative))
-			{
-				DrawPropertyWithNoLabel(baseRect, propertyRelative);
-			}
-		}
-
 		public void DrawPropertyWithNoLabel(Rect baseRect, SerializedProperty property, float offsetRectX = 0f, float offsetRectY = 0, float widthPercent = 1)
 			=> DrawPropertyWithNoLabel(ref baseRect, property, offsetRectX, offsetRectY, widthPercent);
 
@@ -92,6 +80,12 @@ namespace BrightLib.BrightEditing
 			EditorGUI.PropertyField(rect, property, GUIContent.none);
 		}
 
+		protected SerializedProperty FetchPropertyRelative(SerializedProperty property, string propertyRelativeName)
+		{
+			FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty result);
+			return result;
+		}
+
 		protected bool FetchPropertyRelative(SerializedProperty property, string propertyRelativeName, out SerializedProperty propertyRelative)
 		{
 			propertyRelative = property.FindPropertyRelative(propertyRelativeName);
@@ -103,18 +97,12 @@ namespace BrightLib.BrightEditing
 			return false;
 		}
 
-		protected SerializedProperty FetchPropertyRelative(SerializedProperty property, string propertyRelativeName)
-		{
-			FetchPropertyRelative(property, propertyRelativeName, out SerializedProperty result);
-			return result;
-		}
+		#region GreyedOut Area and Indent Level
 
-        #region GreyedOut Area and Indent Level
-
-        /// <summary>
-        /// Allow fields after this to be seen but not altered via inspector.
-        /// </summary>
-        public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
+		/// <summary>
+		/// Allow fields after this to be seen but not altered via inspector.
+		/// </summary>
+		public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
 
 		/// <summary>
 		/// Allow fields after this to be seen and altered via inspector.
@@ -138,7 +126,6 @@ namespace BrightLib.BrightEditing
 
         #endregion
 
-
         #region LineHeight and Label Width
 
         /// <summary>
@@ -157,6 +144,8 @@ namespace BrightLib.BrightEditing
 		public void ResetLabelWidth() => SetLabelWidth(0f);
 
         #endregion
+
+        #region Alter array
 
         /// <summary>
         /// Insert an empty element at the end of the array and return it.
@@ -181,12 +170,16 @@ namespace BrightLib.BrightEditing
 			return false;
 		}
 
-		/// <summary>
-		/// Gets all children of `SerializedProperty` at 1 level depth.
-		/// </summary>
-		/// <param name="serializedProperty">Parent `SerializedProperty`.</param>
-		/// <returns>Collection of `SerializedProperty` children.</returns>
-		public static IEnumerable<SerializedProperty> GetChildren(SerializedProperty serializedProperty)
+        #endregion
+
+        #region Get Children Properties
+
+        /// <summary>
+        /// Gets all children of `SerializedProperty` at 1 level depth.
+        /// </summary>
+        /// <param name="serializedProperty">Parent `SerializedProperty`.</param>
+        /// <returns>Collection of `SerializedProperty` children.</returns>
+        public static IEnumerable<SerializedProperty> GetChildren(SerializedProperty serializedProperty)
 		{
 			SerializedProperty currentProperty = serializedProperty.Copy();
 			SerializedProperty nextSiblingProperty = serializedProperty.Copy();
@@ -233,8 +226,8 @@ namespace BrightLib.BrightEditing
 			}
 		}
 
+        #endregion
 
-
-	}
+    }
 }
 
