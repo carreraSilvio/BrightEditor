@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BrightLib.BrightEditing
 {
     /// <summary>
-	/// Will draw all child properties like a basic inspector would
+	/// Will draw all visible child properties. Useful when you want a quick default property drawer for lists.
 	/// </summary>
     public class SimplePropertyDrawer : BrightPropertyDrawer
     {
