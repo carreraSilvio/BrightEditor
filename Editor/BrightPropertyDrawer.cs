@@ -12,7 +12,10 @@ namespace BrightLib.BrightEditing
         /// <summary>
         /// Draw an empty space at rect + offset
         /// </summary>
-        protected void DrawSpace(ref Rect baseRect, float offsetY = 0f) => DrawLabel(ref baseRect, "", offsetY);
+        protected void DrawSpace(ref Rect baseRect, float offsetY = 0f)
+        {
+            DrawLabel(ref baseRect, "", offsetY);
+        }
 
         protected void DrawLabel(ref Rect baseRect, string text, float increaseY = 0f)
         {
@@ -62,7 +65,9 @@ namespace BrightLib.BrightEditing
         }
 
         public void DrawPropertyWithNoLabel(Rect baseRect, SerializedProperty property, float offsetRectX = 0f, float offsetRectY = 0, float widthPercent = 1)
-            => DrawPropertyWithNoLabel(ref baseRect, property, offsetRectX, offsetRectY, widthPercent);
+        {
+            DrawPropertyWithNoLabel(ref baseRect, property, offsetRectX, offsetRectY, widthPercent);
+        }
 
         public void DrawPropertyWithNoLabel(ref Rect baseRect, SerializedProperty property, float offsetRectX = 0f, float offsetRectY = 0, float widthPercent = 1)
         {
@@ -97,28 +102,49 @@ namespace BrightLib.BrightEditing
             return false;
         }
 
-        #region GreyedOut Area and Indent Level
+        #region ReadOnly Area and Indent Level
 
         ///<inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
-        public void BeginReadOnlyArea(bool toggle = true) => BrightEditorUtility.BeginReadOnlyArea(toggle);
+        public void BeginReadOnlyArea()
+        {
+            BrightEditorUtility.BeginReadOnlyArea(true);
+        }
+
+        ///<inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
+        public void BeginReadOnlyArea(bool toggle)
+        {
+            BrightEditorUtility.BeginReadOnlyArea(toggle);
+        }
 
         ///<inheritdoc cref="BrightEditorUtility.EndReaOnlyArea"/>
-        public void EndReadOnlyArea() => BrightEditorUtility.EndReaOnlyArea();
+        public void EndReadOnlyArea()
+        {
+            BrightEditorUtility.EndReaOnlyArea();
+        }
 
         /// <summary>
         /// Increase indent level by 1
         /// </summary>
-        public void IncreaseIndentLevel() => BrightEditorUtility.IncreaseIndentLevel();
+        public void IncreaseIndentLevel()
+        {
+            BrightEditorUtility.IncreaseIndentLevel();
+        }
 
         /// <summary>
         /// Decrease indent level by 1
         /// </summary>
-        public void DecreaseIndentLevel() => BrightEditorUtility.DecreaseIndentLevel();
+        public void DecreaseIndentLevel()
+        {
+            BrightEditorUtility.DecreaseIndentLevel();
+        }
 
         /// <summary>
         /// Set indent level back to 0
         /// </summary>
-        public void ResetIndentLevel() => BrightEditorUtility.ResetIndentLevel();
+        public void ResetIndentLevel()
+        {
+            BrightEditorUtility.ResetIndentLevel();
+        }
 
         #endregion
 
@@ -132,17 +158,26 @@ namespace BrightLib.BrightEditing
         /// <summary>
         /// Sets the default label width to the given width
         /// </summary>
-        public void SetLabelWidth(Rect rect, float rectWidthPercent) => BrightEditorUtility.SetLabelWidth(rect.width * rectWidthPercent);
+        public void SetLabelWidth(Rect rect, float rectWidthPercent)
+        {
+            BrightEditorUtility.SetLabelWidth(rect.width * rectWidthPercent);
+        }
 
         /// <summary>
         /// Sets the default label width to the given width
         /// </summary>
-        public void SetLabelWidth(float labelWidth) => BrightEditorUtility.SetLabelWidth(labelWidth);
+        public void SetLabelWidth(float labelWidth)
+        {
+            BrightEditorUtility.SetLabelWidth(labelWidth);
+        }
 
         /// <summary>
         /// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
         /// </summary>
-        public void ResetLabelWidth() => SetLabelWidth(0f);
+        public void ResetLabelWidth()
+        {
+            SetLabelWidth(0f);
+        }
 
         #endregion
 

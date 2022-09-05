@@ -26,13 +26,17 @@ namespace BrightLib.BrightEditing
         /// Draws a button and returns true if it was pressed this frame
         /// </summary>
         public bool DrawButton(string text, float width = 60, float height = 20)
-            => BrightEditorUtility.DrawButton(text, width, height);
+        {
+            return BrightEditorUtility.DrawButton(text, width, height);
+        }
 
         /// <summary>
         /// Draws a button and returns true if it was pressed this frame
         /// </summary>
         public bool DrawSimpleButton(string text)
-            => BrightEditorUtility.DrawSimpleButton(text);
+        {
+            return BrightEditorUtility.DrawSimpleButton(text);
+        }
 
         #endregion
 
@@ -67,7 +71,9 @@ namespace BrightLib.BrightEditing
         }
 
         protected void DrawProperty(SerializedProperty property, bool includeChildren = true)
-            => EditorGUILayout.PropertyField(property, includeChildren);
+        {
+            EditorGUILayout.PropertyField(property, includeChildren);
+        }
 
 
         #endregion
@@ -86,37 +92,47 @@ namespace BrightLib.BrightEditing
 
         #endregion
 
+        /// <inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
+        public void StartGreyedOutArea()
+        {
+            BrightEditorUtility.BeginReadOnlyArea(true);
+        }
 
-        /// <summary>
-        /// Allow fields after this to be seen but not altered via inspector.
-        /// </summary>
-        public void StartGreyedOutArea(bool toggle = true)
-            => BrightEditorUtility.BeginReadOnlyArea(toggle);
+        /// <inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
+        public void StartGreyedOutArea(bool toggle)
+        {
+            BrightEditorUtility.BeginReadOnlyArea(toggle);
+        }
 
-        /// <summary>
-        /// Allow fields after this to be seen and altered via inspector.
-        /// </summary>
+        /// <inheritdoc cref="BrightEditorUtility.EndGreyedOutArea()"/>
         public void EndGreyedOutArea()
-            => BrightEditorUtility.EndReaOnlyArea();
+        {
+            BrightEditorUtility.EndReaOnlyArea();
+        }
 
         /// <summary>
         /// Increase the indent level by 1
         /// </summary>
         public void IncreaseIndentLevel()
-            => BrightEditorUtility.IncreaseIndentLevel();
+        {
+            BrightEditorUtility.IncreaseIndentLevel();
+        }
 
 
         /// <summary>
         /// Decrease the indent level by 1
         /// </summary>
         public void DecreaseIndentLevel()
-            => BrightEditorUtility.DecreaseIndentLevel();
+        {
+            BrightEditorUtility.DecreaseIndentLevel();
+        }
 
         /// <summary>
         /// Set the indent level back to 0
         /// </summary>
         public void ResetIndentLevel()
-            => BrightEditorUtility.ResetIndentLevel();
-
+        {
+            BrightEditorUtility.ResetIndentLevel();
+        }
     }
 }

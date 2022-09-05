@@ -17,7 +17,9 @@ namespace BrightLib.BrightEditing
         /// Draws an int field
         /// </summary>
         public static int DrawInt(string label, int value)
-            => EditorGUILayout.IntField(label, value);
+        {
+            return EditorGUILayout.IntField(label, value);
+        }
 
         #endregion
 
@@ -27,13 +29,17 @@ namespace BrightLib.BrightEditing
         /// Draws a text field 
         /// </summary>
         public static string DrawTextField(string label, string text, params GUILayoutOption[] options)
-            => EditorGUILayout.TextField(label, text, options);
+        {
+            return EditorGUILayout.TextField(label, text, options);
+        }
 
         /// <summary>
         /// Draws a label with bold applied.
         /// </summary>
         public static void DrawBoldLabel(string text, params GUILayoutOption[] options)
-            => EditorGUILayout.LabelField(text, EditorStyles.boldLabel, options);
+        {
+            EditorGUILayout.LabelField(text, EditorStyles.boldLabel, options);
+        }
 
 
         /// <summary>
@@ -53,19 +59,25 @@ namespace BrightLib.BrightEditing
         /// Draws a button and returns true if it was pressed this frame.
         /// </summary>
         public static bool DrawButton(string text, float width = 60, float height = 20)
-            => GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
+        {
+            return GUILayout.Button(text, GUILayout.Width(width), GUILayout.Height(height));
+        }
 
         /// <summary>
         /// Draws a button and returns true if it was pressed this frame.
         /// </summary>
         public static bool DrawButton(string text, params GUILayoutOption[] options)
-            => GUILayout.Button(text, options);
+        {
+            return GUILayout.Button(text, options);
+        }
 
         /// <summary>
         /// Draws a button and returns true if it was pressed this frame.
         /// </summary>
         public static bool DrawSimpleButton(string text)
-            => GUILayout.Button(text);
+        {
+            return GUILayout.Button(text);
+        }
 
 
         /// <summary>
@@ -111,7 +123,9 @@ namespace BrightLib.BrightEditing
         #region Draw Helpbox
 
         public static void DrawHelpBox(string message, MessageType messageType = MessageType.None, bool wide = false)
-            => EditorGUILayout.HelpBox(message, messageType, wide);
+        {
+            EditorGUILayout.HelpBox(message, messageType, wide);
+        }
 
         #endregion
 
@@ -170,41 +184,67 @@ namespace BrightLib.BrightEditing
 
         #endregion
 
+        /// <inheritdoc cref="BeginReadOnlyArea(bool)"/>
+        public static void BeginReadOnlyArea()
+        {
+            BeginReadOnlyArea(true);
+        }
+
         /// <summary>
         /// Allow fields after this to be seen but not altered via inspector.
         /// </summary>
-        public static void BeginReadOnlyArea(bool toggle = true) => GUI.enabled = !toggle;
+        public static void BeginReadOnlyArea(bool toggle)
+        {
+            GUI.enabled = !toggle;
+        }
 
         /// <summary>
         /// Allow fields after this to be seen and altered via inspector.
         /// </summary>
-        public static void EndReaOnlyArea() => GUI.enabled = true;
+        public static void EndReaOnlyArea()
+        {
+            GUI.enabled = true;
+        }
 
         /// <summary>
         /// Increase indent level by 1
         /// </summary>
-        public static void IncreaseIndentLevel() => EditorGUI.indentLevel++;
+        public static void IncreaseIndentLevel()
+        {
+            EditorGUI.indentLevel++;
+        }
 
         /// <summary>
         /// Decrease indent level by 1
         /// </summary>
-        public static void DecreaseIndentLevel() => EditorGUI.indentLevel--;
+        public static void DecreaseIndentLevel()
+        {
+            EditorGUI.indentLevel--;
+        }
 
         /// <summary>
         /// Set indent level back to 0
         /// </summary>
-        public static void ResetIndentLevel() => EditorGUI.indentLevel = 0;
+        public static void ResetIndentLevel()
+        {
+            EditorGUI.indentLevel = 0;
+        }
 
         /// <summary>
         /// Sets the default label width to the given width
         /// </summary>
-        public static void SetLabelWidth(float labelWidth) => EditorGUIUtility.labelWidth = labelWidth;
+        public static void SetLabelWidth(float labelWidth)
+        {
+            EditorGUIUtility.labelWidth = labelWidth;
+        }
 
         /// <summary>
         /// Set default label width back to the default value. See <see cref="EditorGUIUtility.labelWidth"/>
         /// </summary>
-        public static void ResetLabelWidth() => SetLabelWidth(0f);
-
+        public static void ResetLabelWidth()
+        {
+            SetLabelWidth(0f);
+        }
 
         public static class EditorIcons
         {

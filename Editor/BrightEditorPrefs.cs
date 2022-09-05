@@ -15,36 +15,70 @@ namespace BrightLib.BrightEditing
         }
 
         public void Save(string key, int value)
-            => SetInt(_keyPrefix + key, value);
+        {
+            SetInt(_keyPrefix + key, value);
+        }
+
         public void Save(string key, float value)
-            => SetFloat(_keyPrefix + key, value);
+        {
+            SetFloat(_keyPrefix + key, value);
+        }
+
         public void Save(string key, bool value)
-            => SetBool(_keyPrefix + key, value);
+        {
+            SetBool(_keyPrefix + key, value);
+        }
+
         public void Save(string key, object value)
-            => SetObject(key, value);
+        {
+            SetObject(key, value);
+        }
 
         public void SetFloat(string key, float value)
-            => EditorPrefs.SetFloat(_keyPrefix + key, value);
+        {
+            EditorPrefs.SetFloat(_keyPrefix + key, value);
+        }
+
         public float GetFloat(string key, float defaultValue = 0)
-            => EditorPrefs.GetFloat(_keyPrefix + key, defaultValue);
+        {
+            return EditorPrefs.GetFloat(_keyPrefix + key, defaultValue);
+        }
 
         public void SetInt(string key, int value)
-            => EditorPrefs.SetInt(_keyPrefix + key, value);
+        {
+            EditorPrefs.SetInt(_keyPrefix + key, value);
+        }
+
         public int GetInt(string key, int defaultValue = 0)
-            => EditorPrefs.GetInt(_keyPrefix + key, defaultValue);
+        {
+            return EditorPrefs.GetInt(_keyPrefix + key, defaultValue);
+        }
 
         public void SetBool(string key, bool value)
-            => EditorPrefs.SetBool(_keyPrefix + key, value);
+        {
+            EditorPrefs.SetBool(_keyPrefix + key, value);
+        }
+
         public bool GetBool(string key, bool defaultValue = false)
-            => EditorPrefs.GetBool(_keyPrefix + key, defaultValue);
+        {
+            return EditorPrefs.GetBool(_keyPrefix + key, defaultValue);
+        }
 
         public void SetString(string key, string value)
-            => EditorPrefs.SetString(_keyPrefix + key, value);
+        {
+            EditorPrefs.SetString(_keyPrefix + key, value);
+        }
+
         public string GetString(string key, string defaultValue = _K_stringDefaultValue)
-            => EditorPrefs.GetString(_keyPrefix + key, defaultValue);
+        {
+            return EditorPrefs.GetString(_keyPrefix + key, defaultValue);
+        }
 
         public void SetObject(string key, object value)
-            => SetString(key, JsonUtility.ToJson(value));
+        {
+            SetString(key, JsonUtility.ToJson(value));
+        }
+
         public T GetObject<T>(string key)
         {
             var json = GetString(key);
@@ -53,10 +87,14 @@ namespace BrightLib.BrightEditing
         }
 
         public bool HasKey(string key)
-            => EditorPrefs.HasKey(_keyPrefix + key);
-        public void DeleteKey(string key)
-            => EditorPrefs.DeleteKey(_keyPrefix + key);
+        {
+            return EditorPrefs.HasKey(_keyPrefix + key);
+        }
 
+        public void DeleteKey(string key)
+        {
+            EditorPrefs.DeleteKey(_keyPrefix + key);
+        }
     }
 }
 
