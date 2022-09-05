@@ -173,12 +173,12 @@ namespace BrightLib.BrightEditing
         /// <summary>
         /// Allow fields after this to be seen but not altered via inspector.
         /// </summary>
-        public static void StartGreyedOutArea(bool toggle = true) => GUI.enabled = !toggle;
+        public static void BeginReadOnlyArea(bool toggle = true) => GUI.enabled = !toggle;
 
         /// <summary>
         /// Allow fields after this to be seen and altered via inspector.
         /// </summary>
-        public static void EndGreyedOutArea() => GUI.enabled = true;
+        public static void EndReaOnlyArea() => GUI.enabled = true;
 
         /// <summary>
         /// Increase indent level by 1

@@ -91,13 +91,13 @@ namespace BrightLib.BrightEditing
         /// Allow fields after this to be seen but not altered via inspector.
         /// </summary>
         public void StartGreyedOutArea(bool toggle = true)
-            => BrightEditorUtility.StartGreyedOutArea(toggle);
+            => BrightEditorUtility.BeginReadOnlyArea(toggle);
 
         /// <summary>
         /// Allow fields after this to be seen and altered via inspector.
         /// </summary>
         public void EndGreyedOutArea()
-            => BrightEditorUtility.EndGreyedOutArea();
+            => BrightEditorUtility.EndReaOnlyArea();
 
         /// <summary>
         /// Increase the indent level by 1

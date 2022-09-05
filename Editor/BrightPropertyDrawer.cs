@@ -99,15 +99,11 @@ namespace BrightLib.BrightEditing
 
         #region GreyedOut Area and Indent Level
 
-        /// <summary>
-        /// Allow fields after this to be seen but not altered via inspector.
-        /// </summary>
-        public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
+        ///<inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
+        public void BeginReadOnlyArea(bool toggle = true) => BrightEditorUtility.BeginReadOnlyArea(toggle);
 
-        /// <summary>
-        /// Allow fields after this to be seen and altered via inspector.
-        /// </summary>
-        public void EndGreyedOutArea() => BrightEditorUtility.EndGreyedOutArea();
+        ///<inheritdoc cref="BrightEditorUtility.EndReaOnlyArea"/>
+        public void EndReadOnlyArea() => BrightEditorUtility.EndReaOnlyArea();
 
         /// <summary>
         /// Increase indent level by 1

@@ -56,11 +56,11 @@ namespace BrightLib.BrightEditing
         public void DrawHelpBox(string message, MessageType messageType = MessageType.None, bool wide = false)
             => BrightEditorUtility.DrawHelpBox(message, messageType, wide);
 
-        /// <inheritdoc cref="BrightEditorUtility.StartGreyedOutArea"/>
-        public void StartGreyedOutArea(bool toggle = true) => BrightEditorUtility.StartGreyedOutArea(toggle);
+        /// <inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea"/>
+        public void BeginReadOnlyArea(bool toggle = true) => BrightEditorUtility.BeginReadOnlyArea(toggle);
 
-        /// <inheritdoc cref="BrightEditorUtility.EndGreyedOutArea"/>
-        public void EndGreyedOutArea() => BrightEditorUtility.EndGreyedOutArea();
+        /// <inheritdoc cref="BrightEditorUtility.EndReaOnlyArea"/>
+        public void EndReadOnlyArea() => BrightEditorUtility.EndReaOnlyArea();
 
         /// <inheritdoc cref="BrightEditorUtility.IncreaseIndentLevel"/>
         public void IncreaseIndentLevel() => BrightEditorUtility.IncreaseIndentLevel();
