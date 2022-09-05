@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BrightLib.BrightEditing
 {
     /// <summary>
-    /// Extends <see cref="UnityEditor"/>.<see cref="PropertyDrawer"/> with quality-of-life methods.
+    /// Extends <see cref="UnityEditor.PropertyDrawer"/> with quality-of-life methods.
     /// </summary>
     public class BrightPropertyDrawer : PropertyDrawer
     {
@@ -228,7 +228,9 @@ namespace BrightLib.BrightEditing
                 do
                 {
                     if (SerializedProperty.EqualContents(currentProperty, nextSiblingProperty))
+                    {
                         break;
+                    }
 
                     yield return currentProperty;
                 }
@@ -254,7 +256,9 @@ namespace BrightLib.BrightEditing
                 do
                 {
                     if (SerializedProperty.EqualContents(currentProperty, nextSiblingProperty))
+                    {
                         break;
+                    }
 
                     yield return currentProperty;
                 }

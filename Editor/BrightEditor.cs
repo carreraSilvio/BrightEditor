@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BrightLib.BrightEditing
 {
     /// <summary>
-    /// Derives <see cref="UnityEditor"/>.<see cref="UnityEditor.Editor"/> with quality-of-life methods.
+    /// Extends <see cref="UnityEditor.Editor"/> with quality-of-life methods.
     /// </summary>
     public class BrightEditor : Editor
     {

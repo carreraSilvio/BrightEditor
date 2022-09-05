@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BrightLib.BrightEditing
 {
     /// <summary>
-    /// Utility class with that wraps <see cref="GUI"/>, <see cref="GUILayout"/>, <see cref="EditorGUI"/> and <see cref="EditorGUILayout"/> methods. 
+    /// Utility class with that wraps <see cref="UnityEngine.GUI"/>, <see cref="UnityEngine.GUILayout"/>, <see cref="UnityEditor.EditorGUI"/> and <see cref="UnityEditor.EditorGUILayout"/> methods. 
     /// </summary>
     public sealed class BrightEditorUtility
     {
