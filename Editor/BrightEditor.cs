@@ -93,19 +93,19 @@ namespace BrightLib.BrightEditing
         #endregion
 
         /// <inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
-        public void StartGreyedOutArea()
+        public void BeginReadOnlyArea()
         {
             BrightEditorUtility.BeginReadOnlyArea(true);
         }
 
         /// <inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
-        public void StartGreyedOutArea(bool toggle)
+        public void BeginReadOnlyArea(bool toggle)
         {
             BrightEditorUtility.BeginReadOnlyArea(toggle);
         }
 
         /// <inheritdoc cref="BrightEditorUtility.EndGreyedOutArea()"/>
-        public void EndGreyedOutArea()
+        public void EndReaOnlyArea()
         {
             BrightEditorUtility.EndReaOnlyArea();
         }
