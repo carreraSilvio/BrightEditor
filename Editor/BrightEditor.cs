@@ -92,6 +92,22 @@ namespace BrightLib.BrightEditing
 
         #endregion
 
+        #region Draw Space
+
+        /// <inheritdoc cref="BrightEditorUtility.DrawSpace"/>
+        public void DrawSpace()
+        {
+            BrightEditorUtility.DrawSpace();
+        }
+
+        /// <inheritdoc cref="BrightEditorUtility.DrawSpace(int)"/>
+        public void DrawSpace(int numberOfLines)
+        {
+            BrightEditorUtility.DrawSpace(numberOfLines);
+        }
+
+        #endregion
+
         /// <inheritdoc cref="BrightEditorUtility.BeginReadOnlyArea(bool)"/>
         public void BeginReadOnlyArea()
         {

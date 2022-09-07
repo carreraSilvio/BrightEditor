@@ -184,6 +184,26 @@ namespace BrightLib.BrightEditing
 
         #endregion
 
+        #region Draw Space
+
+        /// <summary>
+        /// Draws an empty space of the size of one field
+        /// </summary>
+        public static void DrawSpace()
+        {
+            DrawSpace(1);
+        }
+
+        /// <summary>
+        /// Draws an empty space of the size number of lines
+        /// </summary>
+        public static void DrawSpace(int numberOfLines)
+        {
+            EditorGUILayout.Space(numberOfLines * EditorGUIUtility.singleLineHeight);
+        }
+
+        #endregion
+
         /// <inheritdoc cref="BeginReadOnlyArea(bool)"/>
         public static void BeginReadOnlyArea()
         {
