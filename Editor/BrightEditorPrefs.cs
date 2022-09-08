@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace BrightTooling
 {
@@ -12,7 +12,7 @@ namespace BrightTooling
 
         public void SetObject(string key, object value)
         {
-            EditorPrefs.SetString(key, JsonConvert.SerializeObject(value));
+            EditorPrefs.SetString(key, JsonUtility.ToJson(value));
         }
 
         public T GetObject<T>(string key)
@@ -22,7 +22,7 @@ namespace BrightTooling
             {
                 return default;
             }
-            var result = JsonConvert.DeserializeObject<T>(json);
+            var result = JsonUtility.FromJson<T>(json);
             return result;
         }
     }
