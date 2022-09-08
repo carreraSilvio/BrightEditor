@@ -4,8 +4,13 @@ using UnityEngine.AI;
 
 namespace BrightTooling
 {
-    public class BrightHandles : MonoBehaviour
+    /// <summary>
+    /// Extends <see cref="Handles"/> with quality-of-life methods.
+    /// </summary>
+    public sealed class BrightHandles 
     {
+        private BrightHandles() { }
+
         /// <summary>
         /// Draw line with arrows showing direction
         /// </summary>
