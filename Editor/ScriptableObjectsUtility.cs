@@ -22,14 +22,14 @@ namespace BrightTooling
         public static T[] LoadAssets<T>() where T : ScriptableObject
         {
             string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
-            T[] a = new T[guids.Length];
+            T[] assets = new T[guids.Length];
             for (int i = 0; i < guids.Length; i++)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guids[i]);
-                a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
+                assets[i] = AssetDatabase.LoadAssetAtPath<T>(path);
             }
 
-            return a;
+            return assets;
         }
 
 
@@ -64,12 +64,15 @@ namespace BrightTooling
         public static T CreateAssetWithFolderDialog<T>(string filename) where T : ScriptableObject
         {
             var path = EditorUtility.SaveFolderPanel("Where to save", "Assets/", "");
-            if (path.Length <= 0) return null;
+            if (path.Length <= 0)
+            {
+                return null;
+            }
+
             var relativePath = "Assets" + path.Substring(Application.dataPath.Length);
 
             return CreateAsset<T>(filename, relativePath);
         }
-
 
         public static void NestObject(Object childObject, Object parentObject)
         {
