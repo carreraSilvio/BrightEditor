@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BrightLib.BrightEditing
+namespace BrightTooling
 {
     /// <summary>
     /// Extends <see cref="Gizmos"/> with quality-of-life methods.

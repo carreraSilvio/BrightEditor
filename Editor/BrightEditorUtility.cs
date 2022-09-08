@@ -2,10 +2,10 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditing
+namespace BrightTooling
 {
     /// <summary>
-    /// Utility class with that wraps <see cref="UnityEngine.GUI"/>, <see cref="UnityEngine.GUILayout"/>, <see cref="UnityEditor.EditorGUI"/> and <see cref="UnityEditor.EditorGUILayout"/> methods. 
+    /// Utility class with that wraps <see cref="GUI"/>, <see cref="GUILayout"/>, <see cref="EditorGUI"/> and <see cref="EditorGUILayout"/> methods. 
     /// </summary>
     public sealed class BrightEditorUtility
     {
@@ -134,14 +134,14 @@ namespace BrightLib.BrightEditing
         public static void DrawScriptField(MonoBehaviour target)
         {
             GUI.enabled = false;
-            EditorGUILayout.ObjectField("Script", UnityEditor.MonoScript.FromMonoBehaviour(target), target.GetType(), false);
+            EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour(target), target.GetType(), false);
             GUI.enabled = true;
         }
 
         public static void DrawScriptField(ScriptableObject target)
         {
             GUI.enabled = false;
-            EditorGUILayout.ObjectField("Script", UnityEditor.MonoScript.FromScriptableObject(target), target.GetType(), false);
+            EditorGUILayout.ObjectField("Script", MonoScript.FromScriptableObject(target), target.GetType(), false);
             GUI.enabled = true;
         }
 

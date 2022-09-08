@@ -2,10 +2,12 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditing
+namespace BrightTooling
 {
-    public class ScriptableObjectsUtility
+    public sealed class ScriptableObjectsUtility
     {
+        private ScriptableObjectsUtility() { }
+
         /// <summary>
         /// Load all ScriptableObjects of type
         /// </summary>

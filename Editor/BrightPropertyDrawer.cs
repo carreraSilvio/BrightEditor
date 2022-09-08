@@ -2,10 +2,10 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditing
+namespace BrightTooling
 {
     /// <summary>
-    /// Extends <see cref="UnityEditor.PropertyDrawer"/> with quality-of-life methods.
+    /// Extends <see cref="PropertyDrawer"/> with quality-of-life methods.
     /// </summary>
     public class BrightPropertyDrawer : PropertyDrawer
     {

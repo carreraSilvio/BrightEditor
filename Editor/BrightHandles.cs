@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace BrightLib.BrightEditing
+namespace BrightTooling
 {
     public class BrightHandles : MonoBehaviour
     {

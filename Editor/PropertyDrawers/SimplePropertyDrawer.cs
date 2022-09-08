@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditing
+namespace BrightTooling
 {
     /// <summary>
 	/// Will draw all visible child properties. Useful when you want a quick default property drawer for lists.
@@ -18,7 +18,7 @@ namespace BrightLib.BrightEditing
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return SingleLineHeight + (SingleLineHeight * _dynamicPropertiesTotal);
+            return SingleLineHeight + SingleLineHeight * _dynamicPropertiesTotal;
         }
 
         public void DrawAllVisibleProperties(ref Rect rect, SerializedProperty parentProperty)

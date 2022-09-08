@@ -1,10 +1,10 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.BrightEditing
+namespace BrightTooling
 {
     /// <summary>
-    /// Extends <see cref="UnityEditor.Editor"/> with quality-of-life methods.
+    /// Extends <see cref="Editor"/> with quality-of-life methods.
     /// </summary>
     public class BrightEditor : Editor
     {

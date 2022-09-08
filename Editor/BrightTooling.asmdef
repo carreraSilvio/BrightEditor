@@ -1,5 +1,6 @@
 {
-    "name": "BrightLib.BrightEditing",
+    "name": "BrightTooling",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [
         "Editor"
