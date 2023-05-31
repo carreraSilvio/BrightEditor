@@ -123,7 +123,7 @@ namespace BrightTooling
         /// <inheritdoc cref="BrightEditorUtility.EndGreyedOutArea()"/>
         public void EndReaOnlyArea()
         {
-            BrightEditorUtility.EndReaOnlyArea();
+            BrightEditorUtility.EndReadOnlyArea();
         }
 
         /// <summary>

@@ -221,7 +221,7 @@ namespace BrightTooling
         /// <summary>
         /// Allow fields after this to be seen and altered via inspector.
         /// </summary>
-        public static void EndReaOnlyArea()
+        public static void EndReadOnlyArea()
         {
             GUI.enabled = true;
         }

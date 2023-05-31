@@ -116,10 +116,10 @@ namespace BrightTooling
             BrightEditorUtility.BeginReadOnlyArea(toggle);
         }
 
-        ///<inheritdoc cref="BrightEditorUtility.EndReaOnlyArea"/>
+        ///<inheritdoc cref="BrightEditorUtility.EndReadOnlyArea"/>
         public void EndReadOnlyArea()
         {
-            BrightEditorUtility.EndReaOnlyArea();
+            BrightEditorUtility.EndReadOnlyArea();
         }
 
         /// <summary>
