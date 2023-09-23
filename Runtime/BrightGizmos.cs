@@ -11,7 +11,13 @@ namespace BrightToolingRuntime
 
         public static void DrawArrow(Vector3 from, Vector3 direction, float headLength = 0.25f, float headAngle = 20.0f)
         {
+            DrawArrow(from, direction, Color.blue, headLength, headAngle);
+        }
+
+        public static void DrawArrow(Vector3 from, Vector3 direction, Color color, float headLength = 0.25f, float headAngle = 20.0f)
+        {
 #if UNITY_EDITOR
+            Gizmos.color = color;
             Gizmos.DrawRay(from, direction);
 
             Vector3 right = Quaternion.LookRotation(direction) * Quaternion.Euler(180 + headAngle, 0, 180 + headAngle) * new Vector3(0, 0, 1);
