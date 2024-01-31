@@ -8,8 +8,6 @@ namespace BrightTooling
     /// </summary>
     public class BrightEditor : Editor
     {
-        #region Draw Text
-
         /// <summary>
         /// Draws a label with bold applied.
         /// </summary>
@@ -17,8 +15,6 @@ namespace BrightTooling
         {
             BrightEditorUtility.DrawBoldLabel(text, options);
         }
-
-        #endregion
 
         #region Draw Button
 

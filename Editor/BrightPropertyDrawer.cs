@@ -17,20 +17,36 @@ namespace BrightTooling
             DrawLabel(ref baseRect, "", offsetY);
         }
 
-        protected void DrawLabel(ref Rect baseRect, string text, float increaseY = 0f)
+        protected int DrawIntField(ref Rect baseRect, string label, int value, float increaseY = 0f)
         {
             baseRect.y += increaseY;
             Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
 
-            EditorGUI.LabelField(rect, text);
+           return EditorGUI.IntField(rect, label, value);
         }
 
-        protected void DrawBoldLabel(ref Rect baseRect, string text, float increaseY = 0f)
+        protected string DrawTextField(ref Rect baseRect, string label, string text, float increaseY = 0f)
         {
             baseRect.y += increaseY;
             Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
 
-            EditorGUI.LabelField(rect, text, EditorStyles.boldLabel);
+            return EditorGUI.TextField(rect, label, text);
+        }
+
+        protected void DrawLabel(ref Rect baseRect, string label, float increaseY = 0f)
+        {
+            baseRect.y += increaseY;
+            Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
+
+            EditorGUI.LabelField(rect, label);
+        }
+
+        protected void DrawBoldLabel(ref Rect baseRect, string label, float increaseY = 0f)
+        {
+            baseRect.y += increaseY;
+            Rect rect = new Rect(baseRect.x, baseRect.y, baseRect.width, SingleLineHeight);
+
+            EditorGUI.LabelField(rect, label, EditorStyles.boldLabel);
         }
 
         public void DrawProperty(ref Rect baseRect, SerializedProperty property, string propertyRelativeName, float increaseX = 0f, float increaseY = 0, float labelWidth = 0)
