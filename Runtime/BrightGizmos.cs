@@ -47,6 +47,27 @@ namespace BrightToolingRuntime
         public static float DashLength = 0.15f;
         public static float GapLength = 0.1f;
 
+        public static void DrawWireCubeWithDashedLines(Vector3 center, Vector3 size)
+        {
+            Vector3 topLeft = center;
+            topLeft.x -= size.x / 2f;
+            topLeft.y -= size.y / 2f;
+            Vector3 topRight = center;
+            topRight.x += size.x / 2f;
+            topRight.y -= size.y / 2f;
+            Vector3 botLeft = center;
+            botLeft.x -= size.x / 2f;
+            botLeft.y += size.y / 2f;
+            Vector3 botRight = center;
+            botRight.x += size.x / 2f;
+            botRight.y += size.y / 2f;
+
+            DrawDashedLine(topLeft, topRight);
+            DrawDashedLine(topRight, botRight);
+            DrawDashedLine(botRight, botLeft);
+            DrawDashedLine(botLeft, topLeft);
+        }
+
         public static void DrawDashedLine(Vector3 startPoint, Vector3 endPoint)
         {
             Vector3 direction = (endPoint - startPoint).normalized;
