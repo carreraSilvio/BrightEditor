@@ -44,8 +44,8 @@ namespace BrightToolingRuntime
 
         }
 
-        public static float DashLength = 0.15f;
-        public static float GapLength = 0.1f;
+        private static float DASH_LENGTH = 0.15f;
+        private static float GAP_LENGTH = 0.1f;
 
         public static void DrawWireCubeWithDashedLines(Vector3 center, Vector3 size)
         {
@@ -72,12 +72,12 @@ namespace BrightToolingRuntime
         {
             Vector3 direction = (endPoint - startPoint).normalized;
             float distance = Vector3.Distance(startPoint, endPoint);
-            int dashCount = Mathf.FloorToInt(distance / (DashLength + GapLength));
+            int dashCount = Mathf.FloorToInt(distance / (DASH_LENGTH + GAP_LENGTH));
 
             for (int i = 0; i < dashCount; i++)
             {
-                Vector3 dashStart = startPoint + direction * (i * (DashLength + GapLength));
-                Vector3 dashEnd = dashStart + direction * DashLength;
+                Vector3 dashStart = startPoint + direction * (i * (DASH_LENGTH + GAP_LENGTH));
+                Vector3 dashEnd = dashStart + direction * DASH_LENGTH;
                 Gizmos.DrawLine(dashStart, dashEnd);
             }
         }
@@ -94,12 +94,12 @@ namespace BrightToolingRuntime
 
                 Vector3 direction = (endPoint - startPoint).normalized;
                 float distance = Vector3.Distance(startPoint, endPoint);
-                int dashCount = Mathf.FloorToInt(distance / (DashLength + GapLength));
+                int dashCount = Mathf.FloorToInt(distance / (DASH_LENGTH + GAP_LENGTH));
 
                 for (int j = 0; j < dashCount; j++)
                 {
-                    Vector3 dashStart = startPoint + direction * (j * (DashLength + GapLength));
-                    Vector3 dashEnd = dashStart + direction * DashLength;
+                    Vector3 dashStart = startPoint + direction * (j * (DASH_LENGTH + GAP_LENGTH));
+                    Vector3 dashEnd = dashStart + direction * DASH_LENGTH;
                     Gizmos.DrawLine(dashStart, dashEnd);
                 }
             }
