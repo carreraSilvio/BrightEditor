@@ -32,11 +32,16 @@ namespace BrightTooling
             return assets;
         }
 
+        /// <inheritdoc cref="CreateAsset{T}(string, string)"/>
+        public static T CreateAsset<T>(string name) where T : ScriptableObject
+        {
+            return CreateAsset<T>(name, "Assets");
+        }
 
         /// <summary>
         /// Create ScriptableObject asset of name in folder
         /// </summary>
-        public static T CreateAsset<T>(string name, string folder = "Assets") where T : ScriptableObject
+        public static T CreateAsset<T>(string name, string folder) where T : ScriptableObject
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -50,7 +55,10 @@ namespace BrightTooling
 
             var fullPath = Path.GetFullPath(path);
             var directory = Path.GetDirectoryName(fullPath);
-            if (directory != null) Directory.CreateDirectory(directory);
+            if (directory != null)
+            {
+                Directory.CreateDirectory(directory);
+            }
 
             AssetDatabase.CreateAsset(instance, AssetDatabase.GenerateUniqueAssetPath(path));
 
