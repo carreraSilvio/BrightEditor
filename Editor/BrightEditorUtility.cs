@@ -303,27 +303,27 @@ namespace BrightTooling
 
         public static class Characters
         {
-            public const string ArrowUp = "▲";
+            public static readonly string ArrowUp = "▲";
 
-            public const string ArrowDown = "▼";
+            public static readonly string ArrowDown = "▼";
 
-            public const string ArrowLeft = "◀";
+            public static readonly string ArrowLeft = "◀";
 
-            public const string ArrowRight = "▶";
+            public static readonly string ArrowRight = "▶";
 
-            public const string ArrowLeftLight = "←";
+            public static readonly string ArrowLeftLight = "←";
 
-            public const string ArrowRightLight = "→";
+            public static readonly string ArrowRightLight = "→";
 
-            public const string ArrowTopRightLight = "↘";
+            public static readonly string ArrowTopRightLight = "↘";
 
-            public const string Check = "✓";
+            public static readonly string Check = "✓";
 
-            public const string Cross = "×";
+            public static readonly string Cross = "×";
 
-            public const string Plus = "+";
+            public static readonly string Plus = "+";
 
-            public const string Minus = "-";
+            public static readonly string Minus = "-";
 
         }
 
